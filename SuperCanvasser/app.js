@@ -1,4 +1,9 @@
 var createError = require('http-errors');
+
+// include mongodb
+var mongodb = require('./mongodb');
+
+// create express app
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -6,6 +11,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 
 var app = express();
 
