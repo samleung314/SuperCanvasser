@@ -1,0 +1,41 @@
+<body>
+    <div class="center" style="text-align: center; line-height:2;">
+        {{message}}<p></p>
+        <form action="/database/register" method="post">
+            <table align="center">
+                <tr>
+                    <td align="right">First Name </td>
+                    <td align="left">
+                        <input type="text" name="fname" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Last Name </td>
+                    <td align="left">
+                        <input type="text" name="lname" value="">
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Email </td>
+                    <td align="left">
+                        <input type="text" name="email" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Username </td>
+                    <td align="left">
+                        <input type="text" name="user" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Password </td>
+                    <td align="left">
+                        <input type="password" id="pass" name="pass" value="">
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>

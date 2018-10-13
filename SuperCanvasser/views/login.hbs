@@ -1,0 +1,27 @@
+<body>
+    <div class="center" style="text-align: center;">
+        {{message}}
+        <form action="/database/login" method="post">
+            <table align="center">
+                <tr>
+                    <td align="right">Username</td>
+                    <td align="left">
+                        <input type="text" name="user" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Password</td>
+                    <td align="left">
+                        <input type="password" name="pass" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Login">
+        </form>
+        or
+        <form action="/register.hbs">
+            <input type="submit" value="Register">
+            <br>
+        </form>
+    </div>
+</body>

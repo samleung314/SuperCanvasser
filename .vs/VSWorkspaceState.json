@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\SuperCanvasser",
+    "\\SuperCanvasser\\public",
+    "\\SuperCanvasser\\routes",
+    "\\SuperCanvasser\\views"
+  ],
+  "SelectedNode": "\\SuperCanvasser\\views\\addUser.hbs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,55 @@
+<body>
+    <div class="center" style="text-align: center; line-height:2;">
+        {{message}}<p></p>
+        <form action="/database/addUser" method="post">
+            <table align="center">
+                <tr>
+                    <td align="right">First Name </td>
+                    <td align="left">
+                        <input type="text" name="fname" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Last Name </td>
+                    <td align="left">
+                        <input type="text" name="lname" value="">
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Email </td>
+                    <td align="left">
+                        <input type="text" name="email" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Username </td>
+                    <td align="left">
+                        <input type="text" name="user" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Password </td>
+                    <td align="left">
+                        <input type="password" id="pass" name="pass" value="">
+                    </td>
+                </tr>
+            </table>
+            <table align="center">
+                <tr>
+                    <td align="right">User Permissions:&ensp;</td>
+                    <td align="left">
+                        <input type="checkbox" name="canvasser" value="1"> Canvasser&ensp;
+                        <input type="checkbox" name="campaignManager" value="1"> Campaign Manager&ensp;
+                        <input type="checkbox" name="sysAdmin" value="1"> System Admin
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+<input type="hidden" name="canvasser" value="0">
+<input type="hidden" name="campaignManager" value="0">
+<input type="hidden" name="sysAdmin" value="0">
