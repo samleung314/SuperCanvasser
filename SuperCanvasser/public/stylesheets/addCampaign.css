@@ -1,0 +1,20 @@
+#error {
+    color: red;
+    font-size: 18px;
+}
+
+#managers {
+    display: none;
+}
+
+#canvassers {
+    display: none;
+}
+
+#questions {
+    width: 500px;
+}
+
+#visit, #start-date, #end-date {
+    width: 300px;
+}

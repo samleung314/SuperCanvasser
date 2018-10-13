@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+var dbHelper = require('./databaseHelper');
 
 router.get('/', function (req, res, next) {
 });
@@ -12,7 +13,7 @@ router.post('/login', function (req, res, next) {
     db.collection('users').findOne({ 'username': v.user, 'password': v.pass }, function (err, ret) {
         if (err) return handleError(err);
         if (ret != null) {
-            res.cookie('name', ret.name)
+            res.cookie('name', ret.username)
             console.log("Logged In: " + v.user);
             res.redirect('/')
         } else {
@@ -79,5 +80,73 @@ router.post('/register', function (req, res, next) {
         })
     }
 });
+
+// Add a campaign
+router.post('/addCampaign', async function(req, res, next) {
+    var v = req.body;
+    var allManagers = await dbHelper.getManagers(); // Load the list of managers and canvassers
+    var allCanvassers = await dbHelper.getCanvassers();
+    var logValue = 'Logout';
+    // Prepare the data that will have to be sent if we have to reload the form
+    var addCampaign = {title: "SuperCanvasser", logged: logValue, managers: allManagers, canvassers: allCanvassers, message: ''};
+    
+    // Error checking, add to error message if something is missing
+    if (!v['start-date'] || !v['end-date']) {
+        addCampaign.message += '<p>Please enter both a start date and an end date</p>';
+    }
+    if (!v.talk) {
+        addCampaign.message += '<p>Please enter some talking points</p>';
+    }
+    if (!v.question1) {
+        addCampaign.message += '<p>Please enter at least one question</p>';
+    }
+    if (!v.duration) {
+        addCampaign.message += '<p>Please enter an average visiting duration</p>';
+    }
+    if (!v.location) {
+        addCampaign.message += '<p>Please enter at least one location</p>';
+    }
+
+    // Populate the managers, canvassers, and questions array
+    var keys = Object.keys(v); // Load the keys from the object
+    var managers = [];
+    var canvassers = [];
+    var questions = [];
+    for (var i = 0;i < keys.length;i += 1) { // Iterate over all keys
+        var key = keys[i];
+        if (key.indexOf('manager') == 0) { // Find any managers, canvassers, or questions
+            managers.push(v[key]);
+        } else if (key.indexOf('canvasser') == 0) {
+            canvassers.push(v[key]);
+        } else if (key.indexOf('question') == 0) {
+            questions.push(v[key]);
+        }
+    }
+
+    // Error checking for missing managers and canvassers
+    if (managers.length == 0) {
+        addCampaign.message += '<p>Please select at least one manager</p>';
+    }
+    if (canvassers.length == 0) {
+        addCampaign.message += '<p>Please select at least one canvasser</p>';
+    }
+
+    if (addCampaign.message) { // If there was an error, reload the form
+        res.render('addCampaign', addCampaign);
+    } else { // Otherwise add the campaign to the database
+        var campaign = {
+            managers,
+            startDate: v['start-date'],
+            endDate: v['end-date'],
+            talk: v.talk,
+            questions,
+            duration: v.duration,
+            locations: v.location.split('\n'), // Make an array of locations
+            canvassers
+        };
+        db.collection('campaigns').insertOne(campaign);
+        res.render('campaign', {title: "SuperCanvasser", logged: logValue}); // Go back to campaigns page
+    }
+})
 
 module.exports = router;
