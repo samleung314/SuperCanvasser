@@ -79,25 +79,79 @@ router.get('/register.hbs', function (req, res, next) {
     res.render('register', { title: 'SuperCanvasser', logged: logValue, message: "This page is for canvasser registration. To become a manager please contact an administrator." });
 });
 
+function campaignCompare(a, b) {
+    if (a.id < b.id) {
+        return -1;
+    } else if (a.id > b.id) {
+        return 1;
+    }
+    return 0;
+}
+
 // Campaign main page
-router.get('/campaign.hbs', async function(req, res, next) {
+router.get('/campaigns.hbs', async function(req, res, next) {
     await setLogged(req); // Wait for database
+    var campaigns = await dbHelper.getCampaigns();
+    campaigns.sort(campaignCompare);
     if (manager) {
-        res.render('campaign', {title: "SuperCanvasser", logged: logValue});
+        res.render('campaigns', {title: "SuperCanvasser", logged: logValue, campaigns});
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
     } 
 })
 
-router.get('/addCampaign.hbs', async function(req, res, next) {
+// Add Campaign page
+router.get('/addCampaign', async function(req, res, next) {
+    var message = req.query.message; // Load message and campaign (if failed to add)
+    var campaign = req.query.campaign;
     await setLogged(req); // Wait for database
     var managers = await dbHelper.getManagers(); // Load list of managers and canvassers
     var canvassers = await dbHelper.getCanvassers();
     if (manager) {
-        res.render('addCampaign', {title: "SuperCanvasser", logged: logValue, managers, canvassers});
+        if (campaign) { // If we have the campaign, reload the addCampaign view with the old campaign information
+            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, campaign, editCampaign: true});
+        } else {
+            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message});
+        }
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
     } 
+})
+
+// View Campaign page
+router.get('/campaign/:id', async function(req, res, next) {
+    var id = parseInt(req.params.id); // Get the ID
+    await setLogged(req);
+    var campaign = await dbHelper.getCampaign(id); // Load the campaign based on the ID
+    campaign.talk = campaign.talk.split('\n');
+    var edit = true;
+    if (Date.now() > Date.parse(campaign.startDate)) { // Only allow editting if the campaign has not started
+        edit = false;
+    }
+    if (manager) {
+        res.render('campaign', {title: "SuperCanvasser", logged: logValue, campaign, edit});
+    } else {
+        res.render('index', {title: "SuperCanvasser", logged: logValue});
+    }   
+})
+
+// Edit Campaign page
+router.get('/editCampaign/:id', async function(req, res, next) {
+    var message = req.query.message; // Load message and campaign (if failed to edit)
+    var campaign = req.query.campaign;
+    var id = parseInt(req.params.id);
+    await setLogged(req);
+    var managers = await dbHelper.getManagers(); // Load list of managers and canvassers
+    var canvassers = await dbHelper.getCanvassers();
+    if (!campaign) { // If there is no previous campaign edit attempt
+        campaign = await dbHelper.getCampaign(id); // Load the campaign based on the ID
+        campaign = JSON.stringify(campaign);
+    }
+    if (manager) {
+        res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Edit Campaign " + id, logged: logValue, campaign, managers, canvassers, action: '/database/editCampaign', editCampaign: true, message});
+    } else {
+        res.render('index', {title: "SuperCanvasser", logged: logValue});
+    }       
 })
 
 module.exports = router;

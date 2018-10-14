@@ -18,3 +18,7 @@
 #visit, #start-date, #end-date {
     width: 300px;
 }
+
+#original-campaign-container {
+    display: none;
+}

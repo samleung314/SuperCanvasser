@@ -1,0 +1,17 @@
+#campaigns {
+    width: 500px;
+}
+
+.campaign {
+    border-style: solid;
+    border-color: black;
+    padding-top: 10px;
+    margin: 1px;
+    border-width: 1px;
+    height: 40px;
+}
+
+.campaign:hover {
+    border-color: red;
+    border-width: 2px;
+}

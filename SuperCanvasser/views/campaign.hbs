@@ -1,2 +1,41 @@
-<h1>Manage Campaigns</h1>
-<a href="addCampaign.hbs">Add Campaign</a>
+<h1>Campaign {{campaign.id}}</h1>
+{{#if edit}}
+    <br>
+    <a href="/editCampaign/{{campaign.id}}">Edit Campaign</a>
+    <br>
+{{/if}}
+<br>
+<p><b>Managers: </b></p>
+<ul>
+    {{#each campaign.managers}}
+        <li>{{this}}</li>
+    {{/each}}
+</ul>
+<p><b>Start Date: </b> {{campaign.startDate}}</p>
+<p><b>End Date: </b> {{campaign.endDate}}</p>
+<p><b>Talking Points: </b></p>
+<p>
+    {{#each campaign.talk}}
+        {{this}}<br>
+    {{/each}}
+</p>
+<p><b>Questionnaire: </b></p>
+<ol>
+    {{#each campaign.questions}}
+        <li>{{this}}</li>
+    {{/each}}
+</ol>
+<p><b>Visit Duration: </b> {{campaign.duration}}</p>
+<p><b>Locations: </b></p>
+<ul>
+    {{#each campaign.locations}}
+        <li>{{this}}</li>
+    {{/each}}
+</ul>
+<p><b>Canvassers: </b></p>
+<ul>
+    {{#each campaign.canvassers}}
+        <li>{{this}}</li>
+    {{/each}}
+</ul>
+<link rel='stylesheet' href='/stylesheets/campaign.css'/>

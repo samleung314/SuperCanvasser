@@ -1,13 +1,13 @@
-<h1>Add Campaign</h1>
+<h1>{{subtitle}}</h1>
 <br>
 <h3 id="error">{{{message}}}</h3>
 <br>
-<form action="/database/addCampaign" method="post">
+<form action="{{action}}" method="post">
     <p><b>Managers</b> <button type="button" id="toggleManagers" class="btn btn-sm">+</button></p>
     <div id="managers" class="form-group">
         {{#each managers}}
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="manager{{@index}}" value={{username}}>
+                <input class="form-check-input" type="checkbox" name="manager{{@index}}" value="{{username}}">
                 <label class="form-check-label" for="manager{{@index}}">
                     {{firstName}} {{lastName}}
                 </label>
@@ -26,7 +26,7 @@
     <br>
     <div class="form-group">
         <label for="talk"><b>Talking Points</b></label>
-        <textarea class="form-control" name="talk" rows="6"></textarea>
+        <textarea class="form-control" name="talk" id='talk' rows="6"></textarea>
     </div>
     <br>
     <p><b>Questionnaire</b></p>
@@ -37,19 +37,19 @@
     <br>
     <div class="form-group" id="visit">
         <label for="duration"><b>Visit Duration</b></label>
-        <input type="text" name="duration" class="form-control">
+        <input type="text" name="duration" id="duration" class="form-control">
     </div>
     <br>
     <div class="form-group">
         <label for="location"><b>Locations</b></label>
-        <textarea class="form-control" name="location" rows="12"></textarea>
+        <textarea class="form-control" name="location" id="location" rows="12"></textarea>
     </div>
     <br>
     <p><b>Canvassers</b> <button type="button" id="toggleCanvassers" class="btn btn-sm">+</button></p>
     <div id="canvassers" class="form-group">
         {{#each canvassers}}
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="canvasser{{@index}}" value={{username}}>
+                <input class="form-check-input" type="checkbox" name="canvasser{{@index}}" value="{{username}}">
                 <label class="form-check-label" for="canvasser{{@index}}">
                     {{firstName}} {{lastName}}
                 </label>
@@ -57,7 +57,13 @@
         {{/each}}
     </div>
     <br>
+    <div id="original-campaign-container">
+        <input type="text" name="original-campaign" id="original-campaign" value="{{campaign}}">
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <script src="/scripts/addCampaign.js"></script>
 <link rel='stylesheet' href='/stylesheets/addCampaign.css'/>
+{{#if editCampaign}}
+    <script src="/scripts/editCampaign.js"></script>
+{{/if}}

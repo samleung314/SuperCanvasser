@@ -1,0 +1,15 @@
+<h1>Manage Campaigns</h1>
+<br>
+<a href="addCampaign">Add Campaign</a>
+<br>
+<br>
+<div id="campaigns">
+    {{#each campaigns}}
+        <a href="campaign/{{id}}">
+            <div id="campaign{{id}}" class="campaign">
+                <center><p style="font-size: 16px;">Campaign {{id}}: {{startDate}} to {{endDate}}</p></center>
+            </div>
+        </a>
+    {{/each}}
+</div>
+<link rel='stylesheet' href='/stylesheets/campaigns.css'/>

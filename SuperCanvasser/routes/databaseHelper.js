@@ -23,5 +23,39 @@ module.exports = {
                 resolve(); // Resolve, no canvassers found
             })
         });
+    },
+
+    getCampaignID: async function() { // Get the next campaign ID, increment campaign ID as a side effect
+        return new Promise(function(resolve, reject) {
+            db.collection('campaigns').findOne({'isID': true}, function (err, ret) { // Get the ID object
+                if (ret) { // If successful, increment the ID object
+                    db.collection('campaigns').updateOne({'isID': true}, {$set: {id: ret.id + 1}}, function (err, ret) {});
+                    resolve(ret.id); // Resolve, return the ID
+                }
+                resolve(); // Resolve, no ID found
+            })
+        })
+    },
+
+    getCampaigns: async function() { // Get the list of campaigns
+        return new Promise(function(resolve, reject) {
+            db.collection('campaigns').find({"isID": {"$exists": false}}, function(err, ret) {
+                if (ret) {
+                    resolve(ret.toArray()); // Resolve, return found campaigns
+                }
+                resolve(); // Resolve, no campaigns found
+            })
+        });
+    },
+
+    getCampaign: async function(id) { // Get a campaign using ID
+        return new Promise(function(resolve, reject) {
+            db.collection('campaigns').findOne({'id': id}, function(err, ret) {
+                if (ret) {
+                    resolve(ret); // Resolve, return found campaign
+                }
+                resolve(); // Resolve, no campaign found
+            })
+        })
     }
 }
