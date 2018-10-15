@@ -15,7 +15,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var databaseRouter = require('./routes/database');
 
-
 var app = express();
 
 // view engine setup
