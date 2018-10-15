@@ -1,0 +1,55 @@
+<h1>{{subtitle}}</h1>
+<br>
+<h3 id="error">{{{message}}}</h3>
+<br>
+<form action="{{action}}" method="post">
+    <div class="form-group">
+        <label for="inputUsername">Username</label>
+        <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="inputEmail">Email Address</label>
+        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+    </div>
+    <br>
+    <div class="form-row">
+        <div class="col">
+            <label for="inputFirstName">First Name</label>
+            <input type="text" class="form-control" id="inputFirstName" name="first-name" placeholder="First name">
+        </div>
+        <div class="col">
+            <label for="inputLastName">Last Name</label>
+            <input type="text" class="form-control" id="inputLastName" name="last-name" placeholder="Last name">
+        </div>
+    </div>
+    <br>
+    <p><b>User Type</b></p>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="userType" id="inlineCheckbox1" name="canvasser" value="canvasser">
+        <label class="form-check-label" for="inlineCheckbox1">Canvasser</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="userType" id="inlineCheckbox2" name="campaign-manager" value="campaign-manager">
+        <label class="form-check-label" for="inlineCheckbox2">Campaign Manager</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="userType" id="inlineCheckbox3" name="system-admin" value="system-admin">
+        <label class="form-check-label" for="inlineCheckbox3">System Admin</label>
+    </div>
+    <br>
+    <div id="original-user-container">
+        <input type="text" name="original-user" id="original-user" value="{{user}}">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<link rel='stylesheet' href='/stylesheets/editUser.css'/>
+{{#if editUser}}
+    <script src="/scripts/editUser.js"></script>
+{{/if}}

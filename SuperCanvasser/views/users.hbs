@@ -1,0 +1,14 @@
+<h1>Manage Users</h1>
+<br>
+<br>
+<br>
+<div id="users">
+    {{#each users}}
+        <a href="editUser/{{username}}">
+            <div id="campaign{{username}}" class="user">
+                <center><p style="font-size: 16px;">{{username}}</p></center>
+            </div>
+        </a>
+    {{/each}}
+</div>
+<link rel='stylesheet' href='/stylesheets/campaigns.css'/>
