@@ -228,4 +228,48 @@ router.post('/editCampaign', async function(req, res, next) {
     }
 })
 
+// Edit a user
+router.post('/editUser', async function(req, res, next) {
+    var v = req.body;
+    var username = JSON.parse(v['original-user']).username;
+
+    db.collection('users').updateOne({'username': username}, { // Update the user in the database
+        $set: {
+            username: v.username,
+            password: v.password,
+            email: v.email,
+            firstName: v['first-name'],
+            lastName: v['last-name'],
+            canvasser: Boolean(v.userType.includes('canvasser')),
+            campaignManager: Boolean(v.userType.includes('campaign-manager')),
+            sysAdmin: Boolean(v.userType.includes('system-admin'))           
+        }
+    });
+    var campaign = { // Construct the campaign object from the gathered data
+        username: v.username,
+        password: v.password,
+        email: v.email,
+        firstName: v['first-name'],
+        lastName: v['last-name'],
+        canvasser: Boolean(v.userType.includes('canvasser')),
+        campaignManager: Boolean(v.userType.includes('campaign-manager')),
+        sysAdmin: Boolean(v.userType.includes('system-admin'))
+    };
+    res.redirect('/users'); // Go back to users page
+})
+
+// Edit globals
+router.post('/editGlobals', async function(req, res, next) {
+    var v = req.body;
+    var id = JSON.parse(v['original-globals'])._id;
+
+    db.collection('globals').updateOne({'_id': id}, {
+        $set: {
+            workDayDuration: v['work-day-duration'],
+            avgTravelTime: v['average-travel-time'],         
+        }
+    });
+    res.redirect('/editGlobals');
+})
+
 module.exports = router;

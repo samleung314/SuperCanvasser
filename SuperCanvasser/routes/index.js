@@ -52,9 +52,9 @@ async function getUserData(req) {
 router.get('/', async function(req, res, next) {
     await setLogged(req); // Wait for database
     if (!loggedIn) { //if you are logged out
-        res.render('login', { title: "SuperCanvasser", logged: logValue, message: "Welcome. Please login."})
+        res.render('login', { title: "SuperCanvasser", logged: logValue, message: "Welcome. Please login.",  admin:admin, manager:manager})
     } else {
-        res.render('index', { title: "SuperCanvasser", logged: logValue, manager})
+        res.render('index', { title: "SuperCanvasser", logged: logValue, manager, admin:admin})
     }
 });
 
@@ -72,7 +72,7 @@ router.get('/login.hbs', function (req, res, next) {
 });
 
 router.get('/addUser.hbs', function (req, res, next) {
-    res.render('addUser', { title: 'SuperCanvasser', logged: logValue });
+    res.render('addUser', { title: 'SuperCanvasser', logged: logValue, admin, manager});
 });
 
 router.get('/register.hbs', function (req, res, next) {
@@ -94,7 +94,7 @@ router.get('/campaigns.hbs', async function(req, res, next) {
     var campaigns = await dbHelper.getCampaigns();
     campaigns.sort(campaignCompare);
     if (manager) {
-        res.render('campaigns', {title: "SuperCanvasser", logged: logValue, campaigns});
+        res.render('campaigns', {title: "SuperCanvasser", logged: logValue, campaigns, manager:manager,  admin:admin});
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
     } 
@@ -109,9 +109,9 @@ router.get('/addCampaign', async function(req, res, next) {
     var canvassers = await dbHelper.getCanvassers();
     if (manager) {
         if (campaign) { // If we have the campaign, reload the addCampaign view with the old campaign information
-            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, campaign, editCampaign: true});
+            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, campaign, editCampaign: true, manager:manager, admin:admin});
         } else {
-            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message});
+            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, admin:admin, manager:manager});
         }
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
@@ -129,7 +129,7 @@ router.get('/campaign/:id', async function(req, res, next) {
         edit = false;
     }
     if (manager) {
-        res.render('campaign', {title: "SuperCanvasser", logged: logValue, campaign, edit});
+        res.render('campaign', {title: "SuperCanvasser", logged: logValue, campaign, edit, manager:manager, admin:admin});
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
     }   
@@ -148,10 +148,58 @@ router.get('/editCampaign/:id', async function(req, res, next) {
         campaign = JSON.stringify(campaign);
     }
     if (manager) {
-        res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Edit Campaign " + id, logged: logValue, campaign, managers, canvassers, action: '/database/editCampaign', editCampaign: true, message});
+        res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Edit Campaign " + id, logged: logValue, campaign, managers, canvassers, action: '/database/editCampaign', editCampaign: true, message, manager:manager, admin:admin});
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
     }       
+})
+
+function userCompare(a, b) {
+    if (a.username < b.username) {
+        return -1;
+    } else if (a.username > b.username) {
+        return 1;
+    }
+    return 0;
+}
+
+// Users main page
+router.get('/users', async function(req, res, next) {
+    await setLogged(req); // Wait for database
+    var users = await dbHelper.getUsers();
+    console.log(users);
+    users.sort(userCompare);
+    if (admin) {
+        res.render('users', {title: "SuperCanvasser", logged: logValue, users, admin:admin, manager:manager});
+    } else {
+        res.render('index', {title: "SuperCanvasser", logged: logValue});
+    } 
+})
+
+// Edit User page
+router.get('/editUser/:id', async function(req, res, next) {
+    var id = req.params.id;
+    console.log(id);
+    user = await dbHelper.getUser(id); // Load the user based on the username
+    user = JSON.stringify(user);
+    if (admin) {
+        res.render('editUser', {title: "SuperCanvasser", subtitle: "Edit User", logged: logValue, user, admin:admin, editUser: true, action: '/database/editUser', manager:manager}); 
+    } else {
+        res.render('index', {title: "SuperCanvasser", logged: logValue});
+    }
+})
+
+// Edit global variables page
+router.get('/editGlobals', async function(req, res, next) {
+    await setLogged(req); // Wait for database
+    var globals = await dbHelper.getGlobals();
+    globals = JSON.stringify(globals);
+    console.log(globals);
+    if (admin) {
+        res.render('editGlobals', {title: "SuperCanvasser", subtitle: "Edit Globals", logged: logValue, globals, admin:admin, editGlobals:true, action: '/database/editGlobals', manager:manager});
+    } else {
+        res.render('index', {title: "SuperCanvasser", logged: logValue});
+    } 
 })
 
 module.exports = router;

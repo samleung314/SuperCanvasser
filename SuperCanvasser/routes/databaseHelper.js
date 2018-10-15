@@ -57,5 +57,49 @@ module.exports = {
                 resolve(); // Resolve, no campaign found
             })
         })
+    },
+
+    getUsers: async function(username) { // Get all users
+        return new Promise(function(resolve, reject) {
+            db.collection('users').find({"isID": {"$exists": false}}, function(err, ret) {
+                if (ret) {
+                    resolve(ret.toArray()); // Resolve, return found users
+                }
+                resolve(); // Resolve, no user found
+            })
+        })
+    },
+
+    getUser: async function(username) { // Get a user using username
+        return new Promise(function(resolve, reject) {
+            db.collection('users').findOne({'username': username}, function(err, ret) {
+                if (ret) {
+                    resolve(ret); // Resolve, return found user
+                }
+                resolve(); // Resolve, no user found
+            })
+        })
+    }, 
+
+    getUsers: async function() { // Get all users
+        return new Promise(function(resolve, reject) {
+            db.collection('users').find({"isID": {"$exists": false}}, function(err, ret) {
+                if (ret) {
+                    resolve(ret.toArray()); // Resolve, return found users
+                }
+                resolve(); // Resolve, no user found
+            })
+        })
+    },
+
+    getGlobals: async function() { // Get all globals
+        return new Promise(function(resolve, reject) {
+            db.collection('globals').findOne({"_id": 1}, function(err, ret) {
+                if (ret) {
+                    resolve(ret); // Resolve, return found globals
+                }
+                resolve(); // Resolve, no global found
+            })
+        })
     }
 }
