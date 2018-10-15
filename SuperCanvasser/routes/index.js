@@ -72,11 +72,19 @@ router.get('/login.hbs', function (req, res, next) {
 });
 
 router.get('/addUser.hbs', function (req, res, next) {
-    res.render('addUser', { title: 'SuperCanvasser', logged: logValue, admin, manager});
+    if (admin) {
+        res.render('addUser', { title: 'SuperCanvasser', logged: logValue, admin, manager });
+    } else {
+        res.render('index', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser });
+    }
 });
 
 router.get('/register.hbs', function (req, res, next) {
-    res.render('register', { title: 'SuperCanvasser', logged: logValue, message: "This page is for canvasser registration. To become a manager please contact an administrator." });
+    if (!admin && !manager && !canvasser) {
+        res.render('register', { title: 'SuperCanvasser', logged: logValue, message: "This page is for canvasser registration. To become a manager please contact an administrator." });
+    } else {
+        res.render('index', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser });
+    }
 });
 
 function campaignCompare(a, b) {
