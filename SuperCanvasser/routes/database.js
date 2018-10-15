@@ -46,7 +46,7 @@ router.post('/addUser', function (req, res, next) {
                     sysAdmin: Boolean(v.sysAdmin)
                 };
                 db.collection('users').insertOne(user);
-                res.render('addUser', { title: 'SuperCanvasser', message: 'User successfully added.' });
+                res.redirect('/addUser.hbs');
             } else {
                 res.render('addUser', { title: 'SuperCanvasser', message: 'Please select at least one account role.' });
             }
