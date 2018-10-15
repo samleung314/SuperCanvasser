@@ -8,7 +8,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 
-var winston = require('./config/winston');
+var winston = require('./winston');
 var morgan = require('morgan');
 
 var indexRouter = require('./routes/index');
