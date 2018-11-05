@@ -27,7 +27,7 @@
 </ol>
 <p><b>Visit Duration: </b> {{campaign.duration}}</p>
 <p><b>Locations: </b></p>
-<ul>
+<ul id="locations">
     {{#each campaign.locations}}
         <li>{{this}}</li>
     {{/each}}
@@ -38,4 +38,7 @@
         <li>{{this}}</li>
     {{/each}}
 </ul>
+<div id="map"></div>
 <link rel='stylesheet' href='/stylesheets/campaign.css'/>
+<script src="/scripts/campaignMap.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIMd_lgKT8jSNhU6h-wDl2mu6ekkYMvGc&callback=initMap"></script>
