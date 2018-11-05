@@ -1,0 +1,40 @@
+<h1>{{subtitle}}</h1>
+<br>
+
+<br>
+<h3>Username</h3>
+<h5>{{task.username}}</h5>
+
+<br>
+<h3>Date</h3>
+<h5>{{task.date}}</h5>
+
+<br>
+<h3>Campaign ID</h3>
+<h5>{{task.campaignID}}</h5>
+
+<br>
+<h3>Current Location</h3>
+<h5>{{task.currentLocation}}</h5>
+
+<br>
+<h3>Locations</h3>
+{{#each task.locations}}
+<h5>{{.}}</h5>
+{{/each}}
+
+<br>
+<h3>Completed Locations</h3>
+{{#each task.completedLocations}}
+<h5>{{.}}</h5>
+{{/each}}
+
+<br>
+<button onclick="goBack()" class="btn btn-primary">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<link rel='stylesheet' href='/stylesheets/task.css'/>

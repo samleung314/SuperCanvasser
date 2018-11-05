@@ -289,11 +289,10 @@ router.get('/viewTask/:id', async function(req, res, next) {
     await setLogged(req);
     var task = await dbHelper.getTask(id); // Load the task based on the ID
     winston.info('Access Task: ' + id)
-    console.log(id)
     console.log(task)
     if (manager) {
         winston.info('View Task: Manager level access')
-        res.render('viewTask', { title: "SuperCanvasser", logged: logValue, task, manager: manager, admin: admin, canvasser});
+        res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, logged: logValue, task, manager: manager, admin: admin, canvasser});
     } else {
         winston.info('View Task: Non-manager access, redirect to index')
         res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
