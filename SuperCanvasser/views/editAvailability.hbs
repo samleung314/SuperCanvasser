@@ -1,0 +1,49 @@
+<h1>Edit Availability</h1>
+<head>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css" />
+</head>
+<body>
+    Click on dates to toggle your availability; outlined dates are upcoming days on which you are available.
+    <div id="calendar" align="center"></div><p></p>
+    <div align="center"><form action="/database/editAvailability" id="submit" method="post">
+    <input type="button" onclick="submitForm()" value="Apply Changes">
+    <input type="hidden" name="dates" id="dates" value="">
+    </form></div>
+</body>
+
+<script>
+    var dates = [{{{ availability }}}]; //dates that the user has already been marked available on
+    var length = dates.length;
+    var availability = [];
+    var dateTimes = [];
+    for (var i = 0; i < length; i++) {
+        var date = new Date(dates[i]);
+        availability.push(date);
+        dateTimes.push(date.getTime()); //secondary array with integers so dates can be compared
+    }
+    availability.push(new Date('3000-01-01')); //mark a date far in the future; calendar will return null onSelect if the last date is deselected
+    $('#calendar').multiDatesPicker({
+        minDate: 0, // can't pick days before today
+        addDates: availability, //dates that have previously been marked as available
+        onSelect: function () {
+            var date = $(this).datepicker('getDate');
+            var i = dateTimes.indexOf(date.getTime());
+            if (i > -1) {
+                availability.splice(i, 1); //selected date was previously marked; unmark it
+                dateTimes.splice(i, 1);
+            } else {
+                availability.push(date); //selected date was previously unmarked; mark it
+                dateTimes.push(date.getTime());
+            }
+        }
+    });
+    availability.pop(); //remove temp marked date from array
+
+    function submitForm() {
+        document.getElementById("dates").setAttribute("value", availability.toString());
+        document.getElementById("submit").submit();
+    }
+</script>

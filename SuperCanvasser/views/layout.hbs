@@ -24,12 +24,20 @@
         <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
         </li>
+        {{#if canvasser}}
+        <li class="nav-item">
+            <a class="nav-link" href="/editAvailability.hbs">Edit Availability</a>
+        </li>
+        {{/if}}
         {{#if manager}}
         <li class="nav-item">
             <a class="nav-link" href="/addCampaign">Add Campaign</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/campaigns.hbs">Manage Campaigns</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/viewTasks/12">View Tasks</a>
         </li>
         {{/if}}
         {{#if admin}}

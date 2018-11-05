@@ -1355,3 +1355,84 @@
 {"message":"User already logged in","level":"info"}
 {"message":"::1 - - [05/Nov/2018:09:49:30 +0000] \"GET / HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
 {"message":"::1 - - [05/Nov/2018:09:49:30 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Edit Globals: Admin level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:08 +0000] \"GET /editGlobals HTTP/1.1\" 200 3822 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:08 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:08 +0000] \"GET /stylesheets/editGlobals.css HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:08 +0000] \"GET /scripts/editGlobals.js HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Viewing Tasks for Canvassing Assignment: 12","level":"info"}
+{"message":"View Tasks: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:09 +0000] \"GET /viewTasks/12 HTTP/1.1\" 200 4000 \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:09 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/viewTasks/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access Task: 1","level":"info"}
+{"message":"View Task: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:13 +0000] \"GET /viewTask/1 HTTP/1.1\" 200 3986 \"http://localhost/viewTasks/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:13 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/viewTask/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:13 +0000] \"GET /stylesheets/task.css HTTP/1.1\" 200 65 \"http://localhost/viewTask/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"User is a canvasser, prepare info for the availability calendar.","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:23 +0000] \"GET /editAvailability.hbs HTTP/1.1\" 200 5093 \"http://localhost/viewTasks/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:23 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/editAvailability.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Canvasser availability updated.","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:30 +0000] \"POST /database/editAvailability HTTP/1.1\" 302 118 \"http://localhost/editAvailability.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"User is a canvasser, prepare info for the availability calendar.","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:30 +0000] \"GET /editAvailability.hbs HTTP/1.1\" 200 5212 \"http://localhost/editAvailability.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:30 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/editAvailability.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Admin level page, access add user","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:36 +0000] \"GET /addUser.hbs HTTP/1.1\" 200 4924 \"http://localhost/editAvailability.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:36 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/addUser.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Edit Globals: Admin level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:37 +0000] \"GET /editGlobals HTTP/1.1\" 304 - \"http://localhost/addUser.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:37 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:37 +0000] \"GET /stylesheets/editGlobals.css HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:37 +0000] \"GET /scripts/editGlobals.js HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Start Canvass: No task found","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:37 +0000] \"GET /startCanvass HTTP/1.1\" 200 2921 \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:55:37 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/startCanvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Index page access","level":"info"}
+{"message":"User already logged in","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:40 +0000] \"GET / HTTP/1.1\" 200 2868 \"http://localhost/startCanvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:40 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"User is a canvasser, prepare info for the availability calendar.","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:41 +0000] \"GET /editAvailability.hbs HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:41 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/editAvailability.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Viewing Tasks for Canvassing Assignment: 12","level":"info"}
+{"message":"View Tasks: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:43 +0000] \"GET /viewTasks/12 HTTP/1.1\" 304 - \"http://localhost/editAvailability.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:43 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/viewTasks/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access Task: 1","level":"info"}
+{"message":"View Task: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:44 +0000] \"GET /viewTask/1 HTTP/1.1\" 304 - \"http://localhost/viewTasks/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:44 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/viewTask/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:44 +0000] \"GET /stylesheets/task.css HTTP/1.1\" 304 - \"http://localhost/viewTask/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Start Canvass: Canvasser level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:46 +0000] \"GET /startCanvass HTTP/1.1\" 200 3315 \"http://localhost/viewTask/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:46 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/startCanvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Canvass: Canvasser level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:48 +0000] \"GET /canvass HTTP/1.1\" 200 7934 \"http://localhost/startCanvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:49 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:49 +0000] \"GET /stylesheets/canvass.css HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:56:49 +0000] \"GET /scripts/canvass.js HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Canvass: Canvasser level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:08 +0000] \"GET /canvass HTTP/1.1\" 200 7923 \"http://localhost/startCanvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:08 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:08 +0000] \"GET /stylesheets/canvass.css HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:08 +0000] \"GET /scripts/canvass.js HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Canvass: User StevenZabolotny sucessfully canvassed at location 100 Nicolls Rd, Stony Brook, NY 11790","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:21 +0000] \"POST /database/canvass HTTP/1.1\" 302 60 \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Canvass: Canvasser level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:22 +0000] \"GET /canvass HTTP/1.1\" 200 7813 \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:22 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:22 +0000] \"GET /stylesheets/canvass.css HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:22 +0000] \"GET /scripts/canvass.js HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Canvass: User StevenZabolotny sucessfully canvassed at location 260 Pond Path, South Setauket, NY 11720","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:26 +0000] \"POST /database/canvass HTTP/1.1\" 302 60 \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Canvass: No remaining locations in task","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:26 +0000] \"GET /canvass HTTP/1.1\" 200 2915 \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:26 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Index page access","level":"info"}
+{"message":"User already logged in","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:28 +0000] \"GET / HTTP/1.1\" 200 2857 \"http://localhost/canvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:28 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Start Canvass: Canvasser level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:28 +0000] \"GET /startCanvass HTTP/1.1\" 200 2915 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:09:58:28 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/startCanvass\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}

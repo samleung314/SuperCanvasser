@@ -108,13 +108,37 @@ module.exports = {
         })
     },
 
-    getTask: async function(username, date) { // Get a task given a username and a date
+    findTask: async function(username, date) { // Get a task given a username and a date
         return new Promise(function(resolve, reject) {
             db.collection('tasks').findOne({'username': username, 'date': date}, function(err, ret) {
                 if (ret) {
                     resolve(ret); // Resolve, return found user
                 }
                 resolve(); // Resolve, no user found
+            })
+        })
+    },
+
+    getTasks: async function(campaignId) { // Get all tasks for specific canvassing assignment
+        return new Promise(function(resolve, reject) {
+            intId = parseInt(campaignId)
+            db.collection('tasks').find({'campaignID': intId}, function(err, ret) {
+                if (ret) {
+                    resolve(ret.toArray()); // Resolve, return found tasks
+                }
+                resolve(); // Resolve, no tasks found
+            })
+        })
+    },
+
+    getTask: async function(campaignId) { // Get task for specific canvassing assignment
+        return new Promise(function(resolve, reject) {
+            intId = parseInt(campaignId)
+            db.collection('tasks').findOne({'taskID': intId}, function(err, ret) {
+                if (ret) {
+                    resolve(ret); // Resolve, return found task
+                }
+                resolve(); // Resolve, no task found
             })
         })
     }

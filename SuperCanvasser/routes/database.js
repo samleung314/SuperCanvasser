@@ -316,7 +316,7 @@ router.post('/canvass', async function(req, res, next) {
     var date = new Date();
     date = date.toLocaleString('en-US');
     date = date.split(',')[0]; // Get the date
-    var task = await dbHelper.getTask(req.cookies.name, date); // Use date and username to query database for task
+    var task = await dbHelper.findTask(req.cookies.name, date); // Use date and username to query database for task
     var completedLocations = task.completedLocations;
     completedLocations.push(v.destination); // Add current destination to completed locations list
 
@@ -345,6 +345,28 @@ router.post('/canvass', async function(req, res, next) {
 
     winston.info('Canvass: User ' + req.cookies.name + ' sucessfully canvassed at location ' + v.destination );
     res.redirect('/canvass'); // Allow the user to continue canvassing
+});
+
+/* Canvasser edit availability*/
+router.post('/editAvailability', async function (req, res, next) {
+    var v = req.body;
+    var dates = v.dates.split(",");
+    if (dates === undefined || dates.length == 0 || dates[0] == "") {
+        db.collection('users').updateOne({ 'username': req.cookies.name }, { // Remove all available dates
+            $set: {
+                availability: null
+            }
+        });
+        winston.info('All available dates cleared.');
+    } else {
+        db.collection('users').updateOne({ 'username': req.cookies.name }, { // Update the user in the database
+            $set: {
+                availability: dates
+            }
+        });
+        winston.info('Canvasser availability updated.');
+    }
+    res.redirect('back');
 });
 
 module.exports = router;
