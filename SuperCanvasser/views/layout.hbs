@@ -28,7 +28,11 @@
         <li class="nav-item">
             <a class="nav-link" href="/editAvailability.hbs">Edit Availability</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/upcoming/12">View Upcoming Assignments</a>
+        </li>
         {{/if}}
+
         {{#if manager}}
         <li class="nav-item">
             <a class="nav-link" href="/addCampaign">Add Campaign</a>
@@ -40,6 +44,7 @@
             <a class="nav-link" href="/viewTasks/12">View Tasks</a>
         </li>
         {{/if}}
+
         {{#if admin}}
         <li class="nav-item">
             <a class="nav-link" href="/addUser.hbs">Add User</a>
@@ -51,11 +56,13 @@
             <a class="nav-link" href="/editGlobals">Edit Globals</a>
         </li>
         {{/if}}
+
         {{#if canvasser}}
         <li class="nav-item">
             <a class="nav-link" href="/startCanvass">Canvass</a>
         </li>
         {{/if}}
+
         <li class="nav-item" id="lgnBtn">
             <a class="nav-link" href="/login.hbs">{{logged}}</a>
         </li>

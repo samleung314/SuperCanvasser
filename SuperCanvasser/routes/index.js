@@ -366,6 +366,22 @@ router.get('/viewTasks/:id', async function(req, res, next) {
     }
 })
 
+// View Upcoming Canvassing Assignments page for hw 7 ;)
+router.get('/upcoming/:id', async function(req, res, next) {
+    var id = req.params.id;
+    console.log(id);
+    tasks = await dbHelper.getTasks(id); // Load the tasks based on the canvassing id    console.log(id);
+    console.log(tasks);
+    winston.info('Viewing Upcoming Canvassing Assignment: ' + id)
+    if (manager) {
+        winston.info('View Upcoming Canvassing Assignment: Manager level access')
+        res.render('upcoming', { title: "SuperCanvasser", subtitle: "Viewing Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
+    } else {
+        winston.info('View Upcoming Canvassing Assignment: Non-manager level access')
+        res.render('upcoming', { title: "SuperCanvasser", subtitle: "Viewing Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
+    }
+})
+
 // View Task page
 router.get('/viewTask/:id', async function(req, res, next) {
     var id = parseInt(req.params.id); // Get the ID
@@ -378,7 +394,9 @@ router.get('/viewTask/:id', async function(req, res, next) {
         res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, logged: logValue, task, manager: manager, admin: admin, canvasser});
     } else {
         winston.info('View Task: Non-manager access, redirect to index')
-        res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
+        // for hw 7 ;)
+        res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, logged: logValue, task, manager: manager, admin: admin, canvasser});
+        //res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
     }   
 })
 
