@@ -283,4 +283,21 @@ router.get('/viewTasks/:id', async function(req, res, next) {
     }
 })
 
+// View Task page
+router.get('/viewTask/:id', async function(req, res, next) {
+    var id = parseInt(req.params.id); // Get the ID
+    await setLogged(req);
+    var task = await dbHelper.getTask(id); // Load the task based on the ID
+    winston.info('Access Task: ' + id)
+    console.log(id)
+    console.log(task)
+    if (manager) {
+        winston.info('View Task: Manager level access')
+        res.render('viewTask', { title: "SuperCanvasser", logged: logValue, task, manager: manager, admin: admin, canvasser});
+    } else {
+        winston.info('View Task: Non-manager access, redirect to index')
+        res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
+    }   
+})
+
 module.exports = router;

@@ -119,4 +119,16 @@ module.exports = {
             })
         })
     },
+
+    getTask: async function(campaignId) { // Get task for specific canvassing assignment
+        return new Promise(function(resolve, reject) {
+            intId = parseInt(campaignId)
+            db.collection('tasks').findOne({'taskID': intId}, function(err, ret) {
+                if (ret) {
+                    resolve(ret); // Resolve, return found task
+                }
+                resolve(); // Resolve, no task found
+            })
+        })
+    }
 }
