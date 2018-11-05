@@ -1,1 +1,311 @@
 
+{"message":"Index page access","level":"info"}
+{"message":"Prompt for login","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:38 +0000] \"GET / HTTP/1.1\" 200 2691 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:38 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:38 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3677 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Query DB for user: StevenZabolotny","level":"info"}
+{"message":"User found in DB and log in","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:46 +0000] \"POST /database/login HTTP/1.1\" 302 46 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Index page access","level":"info"}
+{"message":"User already logged in","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:46 +0000] \"GET / HTTP/1.1\" 200 2511 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:46 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Index page access","level":"info"}
+{"message":"User already logged in","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:51 +0000] \"GET / HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:51 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access add campaign page","level":"info"}
+{"message":"MongoDB found managers, return array","level":"info"}
+{"message":"MongoDB did not find managers","level":"info"}
+{"message":"MongoDB found canvassers, return array","level":"info"}
+{"message":"MongoDB did not find canvassers","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:53 +0000] \"GET /addCampaign HTTP/1.1\" 200 8021 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:53 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:53 +0000] \"GET /scripts/addCampaign.js HTTP/1.1\" 200 4287 \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:03:53 +0000] \"GET /stylesheets/addCampaign.css HTTP/1.1\" 200 281 \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign main page","level":"info"}
+{"message":"Manager access, manage campaigns","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:00 +0000] \"GET /campaigns.hbs HTTP/1.1\" 200 4931 \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:00 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:00 +0000] \"GET /stylesheets/campaigns.css HTTP/1.1\" 200 261 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 5","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:02 +0000] \"GET /campaign/5 HTTP/1.1\" 200 3292 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:02 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaign/5\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:02 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/5\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Admin level page, access add user","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:16 +0000] \"GET /addUser.hbs HTTP/1.1\" 200 4567 \"http://localhost/campaign/5\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:16 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/addUser.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access users main page","level":"info"}
+{"message":"User is admin, access admin main page","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:19 +0000] \"GET /users HTTP/1.1\" 200 4978 \"http://localhost/addUser.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:19 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/users\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:19 +0000] \"GET /stylesheets/campaigns.css HTTP/1.1\" 304 - \"http://localhost/users\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Edit User: StevenZabolotny","level":"info"}
+{"message":"Edit User: Admin level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:21 +0000] \"GET /editUser/StevenZabolotny HTTP/1.1\" 200 5187 \"http://localhost/users\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:21 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/editUser/StevenZabolotny\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:21 +0000] \"GET /scripts/editUser.js HTTP/1.1\" 200 1004 \"http://localhost/editUser/StevenZabolotny\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:21 +0000] \"GET /stylesheets/editUser.css HTTP/1.1\" 200 49 \"http://localhost/editUser/StevenZabolotny\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Edit Globals: Admin level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:34 +0000] \"GET /editGlobals HTTP/1.1\" 200 3465 \"http://localhost/editUser/StevenZabolotny\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:34 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:34 +0000] \"GET /scripts/editGlobals.js HTTP/1.1\" 200 417 \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:34 +0000] \"GET /stylesheets/editGlobals.css HTTP/1.1\" 200 52 \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Index page access","level":"info"}
+{"message":"User already logged in","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:43 +0000] \"GET / HTTP/1.1\" 304 - \"http://localhost/editGlobals\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:00:04:43 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign main page","level":"info"}
+{"message":"Manager access, manage campaigns","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:25 +0000] \"GET /campaigns.hbs HTTP/1.1\" 200 4931 \"http://localhost/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:25 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:25 +0000] \"GET /stylesheets/campaigns.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:25 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3107 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:25 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:25 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:25 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 - \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:27 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:16:27 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 304 - \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:43:39 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3107 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:43:40 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:43:40 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:43:40 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1576 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:43:40 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3677 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:44:32 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3107 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:44:33 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:44:33 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:44:33 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1574 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:44:33 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3677 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:46:28 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3107 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:46:28 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:46:28 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:46:28 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1584 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:46:28 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3677 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:48:14 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3102 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:48:14 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:48:14 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:48:14 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1584 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:48:14 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3672 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:11 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3096 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:11 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:11 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:11 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1584 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:11 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:59 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3096 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:59 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:59 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:59 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1619 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:49:59 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:56:43 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3096 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:56:43 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:56:43 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:56:43 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1619 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:56:43 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:17 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3096 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:17 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:17 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:17 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1618 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:18 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:50 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3096 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:50 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:50 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:50 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1602 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:57:50 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:58:02 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3096 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:58:02 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:58:02 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:58:02 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1631 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:01:58:02 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:10 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3096 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:10 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:10 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:10 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1568 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:10 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:48 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3230 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:48 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:48 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:48 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1568 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:04:49 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3800 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:05:24 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3230 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:05:24 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:05:24 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:05:24 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1546 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:05:25 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3800 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:06:02 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:06:02 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:06:02 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:06:02 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1546 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:06:03 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:09:22 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:09:22 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:09:22 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:09:22 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1490 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:09:23 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:10:27 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:10:27 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:10:27 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 36 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:10:27 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1490 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:10:27 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:25 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:25 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:25 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 165 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:25 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1490 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:25 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:44 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:44 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:44 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 166 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:44 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1490 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:12:44 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:12 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:12 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:12 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 166 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:12 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1520 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:12 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:30 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:30 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:30 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 166 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:30 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1550 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:30 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:56 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:56 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:56 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 166 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:56 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1556 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:13:57 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 3","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:00 +0000] \"GET /campaign/3 HTTP/1.1\" 200 3234 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:00 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:00 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 166 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:00 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1523 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:01 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign main page","level":"info"}
+{"message":"Manager access, manage campaigns","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:06 +0000] \"GET /campaigns.hbs HTTP/1.1\" 200 4920 \"http://localhost/campaign/3\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:06 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:06 +0000] \"GET /stylesheets/campaigns.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 7","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:08 +0000] \"GET /campaign/7 HTTP/1.1\" 200 3110 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:08 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaign/7\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:08 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 304 - \"http://localhost/campaign/7\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:08 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 304 - \"http://localhost/campaign/7\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign main page","level":"info"}
+{"message":"Manager access, manage campaigns","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:13 +0000] \"GET /campaigns.hbs HTTP/1.1\" 304 - \"http://localhost/campaign/7\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:13 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:13 +0000] \"GET /stylesheets/campaigns.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 1","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:14 +0000] \"GET /campaign/1 HTTP/1.1\" 200 3332 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:14 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:14 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 304 - \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:15:14 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 304 - \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 1","level":"info"}
+{"message":"Campaign edit allowed, has not started","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:33 +0000] \"GET /campaign/1 HTTP/1.1\" 200 3332 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:33 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:33 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 166 \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:33 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 1715 \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:33 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access add campaign page","level":"info"}
+{"message":"MongoDB found managers, return array","level":"info"}
+{"message":"MongoDB did not find managers","level":"info"}
+{"message":"MongoDB found canvassers, return array","level":"info"}
+{"message":"MongoDB did not find canvassers","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:40 +0000] \"GET /addCampaign HTTP/1.1\" 200 8010 \"http://localhost/campaign/1\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:40 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:40 +0000] \"GET /scripts/addCampaign.js HTTP/1.1\" 304 - \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:17:40 +0000] \"GET /stylesheets/addCampaign.css HTTP/1.1\" 200 281 \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Adding/Editing Campaign errors: ","level":"info"}
+{"message":"Add Campaign: Campaign added succesfully to DB","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:14 +0000] \"POST /database/addCampaign HTTP/1.1\" 302 72 \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign main page","level":"info"}
+{"message":"Manager access, manage campaigns","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:14 +0000] \"GET /campaigns.hbs HTTP/1.1\" 200 5142 \"http://localhost/addCampaign\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:14 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:14 +0000] \"GET /stylesheets/campaigns.css HTTP/1.1\" 304 - \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 12","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:19 +0000] \"GET /campaign/12 HTTP/1.1\" 200 3746 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:19 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 304 - \"http://localhost/campaign/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:19 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 304 - \"http://localhost/campaign/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:20:19 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 304 - \"http://localhost/campaign/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"Access campaign: 12","level":"info"}
+{"message":"View Campaign: Manager level access","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:33:13 +0000] \"GET /campaign/12 HTTP/1.1\" 200 3746 \"http://localhost/campaigns.hbs\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:33:13 +0000] \"GET /stylesheets/style.css HTTP/1.1\" 200 119 \"http://localhost/campaign/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:33:13 +0000] \"GET /stylesheets/campaign.css HTTP/1.1\" 200 166 \"http://localhost/campaign/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:33:13 +0000] \"GET /scripts/campaignMap.js HTTP/1.1\" 200 2554 \"http://localhost/campaign/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [05/Nov/2018:02:33:13 +0000] \"GET /favicon.ico HTTP/1.1\" 404 3666 \"http://localhost/campaign/12\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\"\n","level":"info"}
