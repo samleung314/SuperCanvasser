@@ -267,4 +267,20 @@ router.get('/editGlobals', async function(req, res, next) {
     } 
 })
 
+// View Tasks page
+router.get('/viewTasks/:id', async function(req, res, next) {
+    var id = req.params.id;
+    console.log(id);
+    tasks = await dbHelper.getTasks(id); // Load the tasks based on the canvassing id    console.log(id);
+    console.log(tasks);
+    winston.info('Viewing Tasks for Canvassing Assignment: ' + id)
+    if (admin) {
+        winston.info('View Tasks: Manager level access')
+        res.render('viewTasks', { title: "SuperCanvasser", subtitle: "View Tasks", tasks, logged: logValue, user, admin: admin, manager: manager, canvasser}); 
+    } else {
+        winston.info('View Tasks: Non-manager level access')
+        res.render('index', {title: "SuperCanvasser", logged: logValue});
+    }
+})
+
 module.exports = router;
