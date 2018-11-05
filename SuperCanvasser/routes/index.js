@@ -54,10 +54,10 @@ router.get('/', async function(req, res, next) {
     winston.info('Index page access')
     await setLogged(req); // Wait for database
     if (!loggedIn) { //if you are logged out
-        res.render('login', { title: "SuperCanvasser", logged: logValue, message: "Welcome. Please login.",  admin:admin, manager:manager})
+        res.render('login', { title: "SuperCanvasser", logged: logValue, message: "Welcome. Please login.", admin: admin, manager: manager, canvasser})
         winston.info('Prompt for login')
     } else {
-        res.render('index', { title: "SuperCanvasser", logged: logValue, manager, admin:admin})
+        res.render('index', { title: "SuperCanvasser", logged: logValue, manager, admin: admin, canvasser})
         winston.info('User already logged in')
     }
 });
@@ -83,7 +83,7 @@ router.get('/addUser.hbs', async function (req, res, next) {
     await setLogged(req); // Wait for database
     if (admin) {
         winston.info('Admin level page, access add user')
-        res.render('addUser', { title: 'SuperCanvasser', logged: logValue, admin, manager });
+        res.render('addUser', { title: 'SuperCanvasser', logged: logValue, admin, manager, canvasser });
     } else {
         winston.info('User is not admin, non-admin page access')
         res.render('index', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser });
@@ -109,7 +109,10 @@ router.get('/editAvailability.hbs', async function (req, res, next) {
         winston.info('User is a canvasser, prepare info for the availability calendar.');
         var user = await dbHelper.getUser(req.cookies.name);
         var dates = user.availability;
-        var length = dates.length;
+        var length = 0; //number of dates already marked available
+        if (dates != null) {
+            length = dates.length;
+        }
         var availability = [];
         var quote = "'";
         for (var i = 0; i < length; i++){
@@ -140,7 +143,7 @@ router.get('/campaigns.hbs', async function(req, res, next) {
     campaigns.sort(campaignCompare);
     if (manager) {
         winston.info('Manager access, manage campaigns')
-        res.render('campaigns', {title: "SuperCanvasser", logged: logValue, campaigns, manager:manager,  admin:admin});
+        res.render('campaigns', { title: "SuperCanvasser", logged: logValue, campaigns, manager: manager, admin: admin, canvasser});
     } else {
         winston.info('Non-manager access, redirect to index page')
         res.render('index', {title: "SuperCanvasser", logged: logValue});
@@ -157,9 +160,9 @@ router.get('/addCampaign', async function(req, res, next) {
     var canvassers = await dbHelper.getCanvassers();
     if (manager) {
         if (campaign) { // If we have the campaign, reload the addCampaign view with the old campaign information
-            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, campaign, editCampaign: true, manager:manager, admin:admin});
+            res.render('addCampaign', { title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, campaign, editCampaign: true, manager: manager, admin: admin, canvasser});
         } else {
-            res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, admin:admin, manager:manager});
+            res.render('addCampaign', { title: "SuperCanvasser", subtitle: "Add Campaign", logged: logValue, managers, canvassers, action: '/database/addCampaign', message, admin: admin, manager: manager, canvasser});
         }
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
@@ -180,10 +183,10 @@ router.get('/campaign/:id', async function(req, res, next) {
     }
     if (manager) {
         winston.info('View Campaign: Manager level access')
-        res.render('campaign', {title: "SuperCanvasser", logged: logValue, campaign, edit, manager:manager, admin:admin});
+        res.render('campaign', { title: "SuperCanvasser", logged: logValue, campaign, edit, manager: manager, admin: admin, canvasser});
     } else {
         winston.info('View Campaign: Non-manager access, redirect to index')
-        res.render('index', {title: "SuperCanvasser", logged: logValue});
+        res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
     }   
 })
 
@@ -202,7 +205,7 @@ router.get('/editCampaign/:id', async function(req, res, next) {
     }
     if (manager) {
         winston.info('Edit Campaign: Manager level access')
-        res.render('addCampaign', {title: "SuperCanvasser", subtitle: "Edit Campaign " + id, logged: logValue, campaign, managers, canvassers, action: '/database/editCampaign', editCampaign: true, message, manager:manager, admin:admin});
+        res.render('addCampaign', { title: "SuperCanvasser", subtitle: "Edit Campaign " + id, logged: logValue, campaign, managers, canvassers, action: '/database/editCampaign', editCampaign: true, message, manager: manager, admin: admin, canvasser});
     } else {
         winston.info('Edit Campaign: Non-manager level access, redirect to index')
         res.render('index', {title: "SuperCanvasser", logged: logValue});
@@ -227,7 +230,7 @@ router.get('/users', async function(req, res, next) {
     winston.info('Access users main page')
     if (admin) {
         winston.info('User is admin, access admin main page')
-        res.render('users', {title: "SuperCanvasser", logged: logValue, users, admin:admin, manager:manager});
+        res.render('users', { title: "SuperCanvasser", logged: logValue, users, admin: admin, manager: manager, canvasser});
     } else {
         res.render('index', {title: "SuperCanvasser", logged: logValue});
     } 
@@ -242,7 +245,7 @@ router.get('/editUser/:id', async function(req, res, next) {
     winston.info('Edit User: ' + id)
     if (admin) {
         winston.info('Edit User: Admin level access')
-        res.render('editUser', {title: "SuperCanvasser", subtitle: "Edit User", logged: logValue, user, admin:admin, editUser: true, action: '/database/editUser', manager:manager}); 
+        res.render('editUser', { title: "SuperCanvasser", subtitle: "Edit User", logged: logValue, user, admin: admin, editUser: true, action: '/database/editUser', manager: manager, canvasser}); 
     } else {
         winston.info('Edit User: Non-admin level access')
         res.render('index', {title: "SuperCanvasser", logged: logValue});
@@ -257,7 +260,7 @@ router.get('/editGlobals', async function(req, res, next) {
     console.log(globals);
     if (admin) {
         winston.info('Edit Globals: Admin level access')
-        res.render('editGlobals', {title: "SuperCanvasser", subtitle: "Edit Globals", logged: logValue, globals, admin:admin, editGlobals:true, action: '/database/editGlobals', manager:manager});
+        res.render('editGlobals', { title: "SuperCanvasser", subtitle: "Edit Globals", logged: logValue, globals, admin: admin, editGlobals: true, action: '/database/editGlobals', manager: manager, canvasser});
     } else {
         winston.info('Edit Globals: Non-admin access, redirect to index')
         res.render('index', {title: "SuperCanvasser", logged: logValue});

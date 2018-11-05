@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css" />
 </head>
 <body>
-    {{message}}<p></p>
     Click on dates to toggle your availability; outlined dates are upcoming days on which you are available.
     <div id="calendar" align="center"></div><p></p>
-    <div align="center"><form action="/database/editAvailability" method="post"><input type="submit" value="Apply Changes"></form></div>
+    <div align="center"><form action="/database/editAvailability" id="submit" method="post">
+    <input type="button" onclick="submitForm()" value="Apply Changes">
+    <input type="hidden" name="dates" id="dates" value="">
+    </form></div>
 </body>
 
 <script>
@@ -39,4 +41,9 @@
         }
     });
     availability.pop(); //remove temp marked date from array
+
+    function submitForm() {
+        document.getElementById("dates").setAttribute("value", availability.toString());
+        document.getElementById("submit").submit();
+    }
 </script>
