@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+var winston = require('../winston');
 
 // Helper class for accessing database information internally
 module.exports = {
@@ -7,8 +8,10 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             db.collection('users').find({'campaignManager': true}, function (err, ret) {
                 if (ret) {
+                    winston.info('MongoDB found managers, return array')
                     resolve(ret.toArray()); // Resolve, return found managers
                 }
+                winston.info('MongoDB did not find managers')
                 resolve(); // Resolve, no managers found
             })
         });
@@ -18,8 +21,10 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             db.collection('users').find({'canvasser': true}, function (err, ret) {
                 if (ret) {
+                    winston.info('MongoDB found canvassers, return array')
                     resolve(ret.toArray()); // Resolve, return found canvassers
                 }
+                winston.info('MongoDB did not find canvassers')
                 resolve(); // Resolve, no canvassers found
             })
         });
