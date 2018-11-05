@@ -106,6 +106,7 @@ router.get('/register.hbs', async function (req, res, next) {
 router.get('/editAvailability.hbs', async function (req, res, next) {
     await setLogged(req); // Wait for database
     if (canvasser) {
+        winston.info('User is a canvasser, prepare info for the availability calendar.');
         var user = await dbHelper.getUser(req.cookies.name);
         var dates = user.availability;
         var length = dates.length;
@@ -117,6 +118,7 @@ router.get('/editAvailability.hbs', async function (req, res, next) {
         }
         res.render('editAvailability', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser, availability: availability});
     } else {
+        winston.info('User is not a canvasser, redirect to index page')
         res.render('index', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser });
     } 
 });
