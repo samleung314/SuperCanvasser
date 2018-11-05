@@ -71,7 +71,9 @@ router.get('/login.hbs', function (req, res, next) {
     }
 });
 
-router.get('/addUser.hbs', function (req, res, next) {
+// SysAdmin add new user
+router.get('/addUser.hbs', async function (req, res, next) {
+    await setLogged(req); // Wait for database
     if (admin) {
         res.render('addUser', { title: 'SuperCanvasser', logged: logValue, admin, manager });
     } else {
@@ -79,12 +81,33 @@ router.get('/addUser.hbs', function (req, res, next) {
     }
 });
 
-router.get('/register.hbs', function (req, res, next) {
+// New user register as canvasser
+router.get('/register.hbs', async function (req, res, next) {
+    await setLogged(req); // Wait for database
     if (!admin && !manager && !canvasser) {
         res.render('register', { title: 'SuperCanvasser', logged: logValue, message: "This page is for canvasser registration. To become a manager please contact an administrator." });
     } else {
         res.render('index', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser });
     }
+});
+
+// Canvasser edit availability page
+router.get('/editAvailability.hbs', async function (req, res, next) {
+    await setLogged(req); // Wait for database
+    if (canvasser) {
+        var user = await dbHelper.getUser(req.cookies.name);
+        var dates = user.availability;
+        var length = dates.length;
+        var availability = [];
+        var quote = "'";
+        for (var i = 0; i < length; i++){
+            var date = new Date(dates[i]);
+            availability.push(quote.concat(date, quote));
+        }
+        res.render('editAvailability', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser, availability: availability});
+    } else {
+        res.render('index', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser });
+    } 
 });
 
 function campaignCompare(a, b) {

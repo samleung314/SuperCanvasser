@@ -6,6 +6,6 @@
     "\\SuperCanvasser\\routes",
     "\\SuperCanvasser\\views"
   ],
-  "SelectedNode": "\\SuperCanvasser\\views\\addUser.hbs",
+  "SelectedNode": "\\SuperCanvasser\\views\\addCampaign.hbs",
   "PreviewInSolutionExplorer": false
 }

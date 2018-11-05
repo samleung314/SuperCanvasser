@@ -272,4 +272,11 @@ router.post('/editGlobals', async function(req, res, next) {
     res.redirect('/editGlobals');
 })
 
+/* Canvasser edit availability*/
+router.post('/editAvailability', function (req, res, next) {
+    var v = req.body;
+
+    res.render('index', { title: 'SuperCanvasser', message: 'Your changes have been applied.' });
+});
+
 module.exports = router;
