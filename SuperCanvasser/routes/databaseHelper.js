@@ -110,7 +110,8 @@ module.exports = {
 
     getTasks: async function(campaignId) { // Get all tasks for specific canvassing assignment
         return new Promise(function(resolve, reject) {
-            db.collection('tasks').find({'campaignID': campaignId}, function(err, ret) {
+            intId = parseInt(campaignId)
+            db.collection('tasks').find({'campaignID': intId}, function(err, ret) {
                 if (ret) {
                     resolve(ret.toArray()); // Resolve, return found tasks
                 }
