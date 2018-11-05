@@ -1,0 +1,16 @@
+<h1>Canvass</h1>
+<p>
+    <b>Canvasser: </b> {{username}}<br>
+    <b>Date: </b> {{date}}
+</p>
+<form action="/database/startCanvass" method="post">
+    <div class="form-group" id="visit">
+        <label for="start"><b>Where are you currently located?</b></label>
+        <input type="text" name="start" id="start" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Start Canvassing</button>
+</form>
+<br>
+{{#if currentLocation}}
+<a href="/canvass"><button type="button" class="btn btn-primary">Start Canvassing Using Previous Location</button></a>
+{{/if}}

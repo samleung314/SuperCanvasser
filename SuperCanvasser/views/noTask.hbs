@@ -1,0 +1,10 @@
+<h1>Canvass</h1>
+<p>
+    <b>Canvasser: </b> {{username}}<br>
+    <b>Date: </b> {{date}}
+</p>
+{{#if noTask}}
+    <h3>You do not have a canvassing task assigned to you for today.</h3>
+{{else}}
+    <h3>You have completed the canvassing task assigned to you for today.</h3>
+{{/if}}

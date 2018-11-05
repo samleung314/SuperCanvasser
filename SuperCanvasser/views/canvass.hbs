@@ -1,0 +1,89 @@
+<h1>Canvass</h1>
+<br>
+<p>
+<b>Current Location: </b>
+</p>
+<p id="location">{{task.currentLocation}}</p>
+<p><b>Destination: </b></p>
+<p id="destination">{{destination}}</p>
+<p><b>Change Destination: </b></p>
+<select id="updateDestination">
+    {{#each locations}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select><br><br>
+<button type="button" id="changeDestination" class="btn">Change Destination</button><br><br>
+<p><b>Directions: </b></p>
+<div class="directions-container">
+    <div id="map"></div>
+    <div id="directions"></div>
+</div>
+<br>
+<p><b>Talking Points: </b></p>
+<p>
+    {{#each campaign.talk}}
+        {{this}}<br>
+    {{/each}}
+</p>
+<p><b>Results:</b></p>
+<form action="/database/canvass" method="post">
+    <input type="hidden" name="destination" id="destinationForm">
+    <div class="form-group">
+        <label>Did you speak to someone?</label>
+        <div class="radio">
+        <label>
+            <input type="radio" name="spoke" id="spoke1" value="yes">
+            Yes
+        </label>
+        </div>
+        <div class="radio">
+        <label>
+            <input type="radio" name="spoke" id="spoke2" value="no" checked>
+            No
+        </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label fpr="rating">How successful was the visit? (0 to 5 stars)</label>
+        <br>
+        <select name="rating" id="rating">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    {{#each campaign.questions}}
+        <div class="form-group">
+            <label>{{question}}</label>
+            <div class="radio">
+            <label>
+                <input type="radio" name="question{{id}}" value="yes">
+                Yes
+            </label>
+            </div>
+            <div class="radio">
+            <label>
+                <input type="radio" name="question{{id}}" value="no">
+                No
+            </label>
+            </div>
+            <div class="radio">
+            <label>
+                <input type="radio" name="question{{id}}" value="na" checked>
+                No Response
+            </label>
+            </div>
+        </div>
+    {{/each}}
+    <div class="form-group">
+        <label for="notes">Additional Notes:</label>
+        <textarea class="form-control" name="notes" id='notes' rows="6"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<link rel='stylesheet' href='/stylesheets/canvass.css'/>
+<script src="/scripts/canvass.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIMd_lgKT8jSNhU6h-wDl2mu6ekkYMvGc&callback=initMap"></script>

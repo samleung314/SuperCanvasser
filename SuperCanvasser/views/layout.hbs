@@ -43,6 +43,11 @@
             <a class="nav-link" href="/editGlobals">Edit Globals</a>
         </li>
         {{/if}}
+        {{#if canvasser}}
+        <li class="nav-item">
+            <a class="nav-link" href="/startCanvass">Canvass</a>
+        </li>
+        {{/if}}
         <li class="nav-item" id="lgnBtn">
             <a class="nav-link" href="/login.hbs">{{logged}}</a>
         </li>

@@ -106,5 +106,16 @@ module.exports = {
                 resolve(); // Resolve, no global found
             })
         })
+    },
+
+    getTask: async function(username, date) { // Get a task given a username and a date
+        return new Promise(function(resolve, reject) {
+            db.collection('tasks').findOne({'username': username, 'date': date}, function(err, ret) {
+                if (ret) {
+                    resolve(ret); // Resolve, return found user
+                }
+                resolve(); // Resolve, no user found
+            })
+        })
     }
 }
