@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var db = mongoose.connection;
-var winston = require('../winston');
+var winston = require('../../winston');
 
 // Helper class for accessing database information internally
 module.exports = {
