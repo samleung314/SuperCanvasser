@@ -1,0 +1,25 @@
+<h1>{{subtitle}}</h1>
+<br>
+<h3 id="error">{{{message}}}</h3>
+<br>
+<form action="{{action}}" method="post">
+    <div class="form-group">
+        <label for="input-work-day-duration">Work Day Duration (hours)</label>
+        <input type="text" class="form-control" id="input-work-day-duration" name="work-day-duration" placeholder="Duration">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="input-average-travel-time">Average Travel Time (minutes)</label>
+        <input type="number" class="form-control" id="input-average-travel-time" name="average-travel-time" placeholder="Time">
+    </div>
+    <br>
+    <div id="original-globals-container">
+        <input type="text" name="original-globals" id="original-globals" value="{{globals}}">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<link rel='stylesheet' href='/stylesheets/editGlobals.css'/>
+{{#if editGlobals}}
+    <script src="/scripts/editGlobals.js"></script>
+{{/if}}
