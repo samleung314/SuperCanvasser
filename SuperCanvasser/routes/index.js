@@ -308,12 +308,14 @@ router.get('/canvass', async function(req, res, next) {
     if (canvasser) {
         if (task) { // If the task exists
             var destination = "";
+            var destinationID = "";
             var locations = []; // Locations that have not yet been completed
             for (var i = 0;i < task.locations.length;i++) {
                 var loc = task.locations[i];
-                if (task.completedLocations.indexOf(loc) == -1) {
+                if (task.completedLocations.indexOf(loc.id) == -1) {
                     if (!destination) { // First incomplete destination is next destination, assuming list of destinations sorted in order of visiting
-                        destination = loc;
+                        destination = loc.number + ', ' + loc.street + ', ' + loc.unit + ', ' + loc.city + ', ' + loc.state + ', ' + loc.zip;
+                        destinationID = loc.id;
                     }
                     locations.push(loc);
                 }
@@ -335,7 +337,7 @@ router.get('/canvass', async function(req, res, next) {
                 res.render('noTask', {title: "SuperCanvasser", noTask: false, username: req.cookies.name, date, logged: logValue, admin, manager, canvasser});
             } else if (task.currentLocation) { // If there is a selected current location
                 winston.info('Canvass: Canvasser level access'); // allow the user to canvass
-                res.render('canvass', {title: "SuperCanvasser", task, locations, destination, campaign, logged: logValue, admin, manager, canvasser});
+                res.render('canvass', {title: "SuperCanvasser", task, locations, destination, destinationID, campaign, logged: logValue, admin, manager, canvasser});
             } else { // Otherwise make them choose a current location
                 winston.info('Canvass: No current location');
                 res.render('startCanvass', {title: "SuperCanvasser", logged: logValue, admin, manager, canvasser});
@@ -378,7 +380,8 @@ router.get('/upcoming/:id', async function(req, res, next) {
         res.render('upcoming', { title: "SuperCanvasser", subtitle: "Viewing Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
     } else {
         winston.info('View Upcoming Canvassing Assignment: Non-manager level access')
-        res.render('upcoming', { title: "SuperCanvasser", subtitle: "Viewing Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
+        // res.render('upcoming', { title: "SuperCanvasser", subtitle: "Viewing Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
+        res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
     }
 })
 
@@ -388,15 +391,23 @@ router.get('/viewTask/:id', async function(req, res, next) {
     await setLogged(req);
     var task = await dbHelper.getTask(id); // Load the task based on the ID
     winston.info('Access Task: ' + id)
-    console.log(task)
+
+    var completedLocations = [];
+    for (var i = 0;i < task.locations.length;i++) { // Iterate over all locations
+        var loc = task.locations[i];
+        if (task.completedLocations.indexOf(loc.id) != -1) { // If the location has been completed (its ID is present in completedLocations), add it to array of completed locations
+            completedLocations.push(loc);
+        }
+    }
+
     if (manager) {
         winston.info('View Task: Manager level access')
-        res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, logged: logValue, task, manager: manager, admin: admin, canvasser});
+        res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, completedLocations, logged: logValue, task, manager: manager, admin: admin, canvasser});
     } else {
         winston.info('View Task: Non-manager access, redirect to index')
         // for hw 7 ;)
-        res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, logged: logValue, task, manager: manager, admin: admin, canvasser});
-        //res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
+        // res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, logged: logValue, task, manager: manager, admin: admin, canvasser});
+        res.render('index', { title: "SuperCanvasser", logged: logValue, admin: admin, canvasser});
     }   
 })
 

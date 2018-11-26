@@ -151,6 +151,25 @@ router.post('/addCampaign', async function(req, res, next) {
         }
     }
 
+    var locations = v.location.split('\n');
+    var parsedLocations = [];
+    var locid = 1;
+    for (var i = 0;i < locations.length;i += 1) { // Iterate over all locations
+        var location = locations[i].split(',');
+        if (location.length == 6) { // Each valid location must have 6 parts separated by commas
+            var parsedLocation = {};
+            parsedLocation.number = location[0].trim();
+            parsedLocation.street = location[1].trim();
+            parsedLocation.unit = location[2].trim();
+            parsedLocation.city = location[3].trim();
+            parsedLocation.state = location[4].trim();
+            parsedLocation.zip = location[5].trim();
+            parsedLocation.id = locid;
+            locid += 1;
+            parsedLocations.push(parsedLocation);
+        }
+    }
+
     // Construct the campaign object from the gathered data
     var campaign = {
         managers,
@@ -159,7 +178,7 @@ router.post('/addCampaign', async function(req, res, next) {
         talk: v.talk,
         questions,
         duration: v.duration,
-        locations: v.location.split('\n'), // Make an array of locations
+        locations: parsedLocations, // Make an array of locations
         canvassers
     };
 
@@ -202,6 +221,25 @@ router.post('/editCampaign', async function(req, res, next) {
         }
     }
 
+    var locations = v.location.split('\n');
+    var parsedLocations = [];
+    var locid = 1;
+    for (var i = 0;i < locations.length;i += 1) { // Iterate over all locations
+        var location = locations[i].split(',');
+        if (location.length == 6) { // Each valid location must have 6 parts separated by commas
+            var parsedLocation = {};
+            parsedLocation.number = location[0].trim();
+            parsedLocation.street = location[1].trim();
+            parsedLocation.unit = location[2].trim();
+            parsedLocation.city = location[3].trim();
+            parsedLocation.state = location[4].trim();
+            parsedLocation.zip = location[5].trim();
+            parsedLocation.id = locid;
+            locid += 1;
+            parsedLocations.push(parsedLocation);
+        }
+    }
+
     var message = campaignError(v, managers, canvassers); // Check for errors
     if (message) { // If there was an error, reload the form
         var campaign = { // Construct the campaign object from the gathered data
@@ -212,7 +250,7 @@ router.post('/editCampaign', async function(req, res, next) {
             talk: v.talk,
             questions,
             duration: v.duration,
-            locations: v.location.split('\n'), // Make an array of locations
+            locations: parsedLocations, // Make an array of locations
             canvassers  
         };
         res.redirect(url.format({
@@ -231,7 +269,7 @@ router.post('/editCampaign', async function(req, res, next) {
                 talk: v.talk,
                 questions,
                 duration: v.duration,
-                locations: v.location.split('\n'), // Make an array of locations
+                locations: parsedLocations, // Make an array of locations
                 canvassers              
             }
         });
@@ -318,7 +356,7 @@ router.post('/canvass', async function(req, res, next) {
     date = date.split(',')[0]; // Get the date
     var task = await dbHelper.findTask(req.cookies.name, date); // Use date and username to query database for task
     var completedLocations = task.completedLocations;
-    completedLocations.push(v.destination); // Add current destination to completed locations list
+    completedLocations.push(parseInt(v.destinationid)); // Add current destination to completed locations list
 
     db.collection('tasks').updateOne({'username': req.cookies.name, 'date': date}, {
         $set: { // Update the task with new completed locations and set current location to the location we just completed
@@ -343,7 +381,7 @@ router.post('/canvass', async function(req, res, next) {
     };
     db.collection('results').insertOne(result); // Insert it into the database
 
-    winston.info('Canvass: User ' + req.cookies.name + ' sucessfully canvassed at location ' + v.destination );
+    winston.info('Canvass: User ' + req.cookies.name + ' sucessfully canvassed at location ' + v.destination);
     res.redirect('/canvass'); // Allow the user to continue canvassing
 });
 

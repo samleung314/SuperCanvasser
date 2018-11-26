@@ -20,13 +20,13 @@
 <br>
 <h3>Locations</h3>
 {{#each task.locations}}
-<h5>{{.}}</h5>
+<h5>{{number}}, {{street}}, {{unit}}, {{city}}, {{state}}, {{zip}}</h5>
 {{/each}}
 
 <br>
 <h3>Completed Locations</h3>
-{{#each task.completedLocations}}
-<h5>{{.}}</h5>
+{{#each completedLocations}}
+<h5>{{number}}, {{street}}, {{unit}}, {{city}}, {{state}}, {{zip}}</h5>
 {{/each}}
 
 <br>

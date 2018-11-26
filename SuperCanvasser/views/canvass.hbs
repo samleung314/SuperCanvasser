@@ -9,7 +9,7 @@
 <p><b>Change Destination: </b></p>
 <select id="updateDestination">
     {{#each locations}}
-        <option value="{{this}}">{{this}}</option>
+        <option id="location{{id}}" value="{{id}}">{{number}}, {{street}}, {{unit}}, {{city}}, {{state}}, {{zip}}</option>
     {{/each}}
 </select><br><br>
 <button type="button" id="changeDestination" class="btn">Change Destination</button><br><br>
@@ -27,7 +27,8 @@
 </p>
 <p><b>Results:</b></p>
 <form action="/database/canvass" method="post">
-    <input type="hidden" name="destination" id="destinationForm">
+    <input type="hidden" name="destinationid" id="destinationFormID" value={{destinationID}}>
+    <input type="hidden" name="destination" id="destinationForm" value="{{destination}}">
     <div class="form-group">
         <label>Did you speak to someone?</label>
         <div class="radio">

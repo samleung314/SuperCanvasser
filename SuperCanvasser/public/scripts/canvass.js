@@ -38,8 +38,6 @@ async function updateMap() {
     location = await getLatLng(location); // Get the initial location
 
     var destination = document.getElementById('destination').innerHTML; // Get the destination
-    var destinationForm = document.getElementById('destinationForm');
-    destinationForm.value = destination; // Update the destination in the destinationForm so the server receives the value
     destination = await getLatLng(destination);
 
     var bounds = new google.maps.LatLngBounds(); // Define and extend the Lat Long bounds
@@ -77,8 +75,14 @@ async function updateMap() {
 // Update the destination (called by clicking the button)
 function updateDestination() {
     var destination = document.getElementById('destination');
-    var newDestination = document.getElementById('updateDestination').value; // Get the updated destination value
+    var newDestinationID = document.getElementById('updateDestination').value; // Get the updated destination id and value
+    var newDestination = document.getElementById('location' + newDestinationID).innerHTML; 
     destination.innerHTML = newDestination; // Update the destination with it
+
+    var destinationForm = document.getElementById('destinationForm');
+    destinationForm.value = newDestination; // Update the destination in the destinationForm so the server receives the value
+    var destinationFormID = document.getElementById('destinationFormID');
+    destinationFormID.value = newDestinationID; // Update the destination id in the destinationFormID so the server receives the value
 
     updateMap(); // Update the map with the new destination so the directions are recalculated
 }

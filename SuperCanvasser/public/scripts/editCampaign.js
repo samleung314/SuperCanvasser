@@ -25,7 +25,11 @@ function init() { // Initialize the addCampaign view using campaign information 
 
     document.getElementById('duration').value = campaign.duration; // Load campaign duration
 
-    document.getElementById('location').value = campaign.locations.join('\n'); // Load campaign locations (from array)
+    var locations = [];
+    for (var i = 0;i < campaign.locations.length;i += 1) {
+        locations.push(campaign.locations[i].number + ', ' + campaign.locations[i].street + ', ' + campaign.locations[i].unit + ', ' + campaign.locations[i].city + ', ' + campaign.locations[i].state + ', ' + campaign.locations[i].zip);
+    }
+    document.getElementById('location').value = locations.join('\n'); // Load campaign locations (from array)
 
     var canvassers = document.getElementById('canvassers').children; // Get the list of all canvassers
     for (var i = 0;i < canvassers.length;i += 1) {
