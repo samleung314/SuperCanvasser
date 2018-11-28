@@ -1,0 +1,27 @@
+<h1>{{subtitle}}</h1>
+<br>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Campaign</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    <div id="campaigns">
+        {{#each campaigns}}
+            <tr>
+                <div id="{{id}}" class="campaign">
+                    <td><p style="font-size: 16px;">{{id}}</p></td>
+                    <td><p style="font-size: 16px;">{{startDate}}</p></td>
+                    <td><p style="font-size: 16px;">{{endDate}}</p></td>
+                    <td><p style="font-size: 16px;"><a href="/viewTasks/{{id}}">Details</a></p></td>
+                </div>
+            </tr>
+        {{/each}}
+    </div>
+    </tbody>
+</table>

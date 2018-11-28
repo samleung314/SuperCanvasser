@@ -353,6 +353,20 @@ router.get('/canvass', async function(req, res, next) {
     }
 });
 
+
+router.get('/viewAssignments', async function(req, res, next) {
+    var campaigns = await dbHelper.getCampaigns();
+    campaigns.sort(campaignCompare);
+    console.log(campaigns);
+    if (manager) {
+        winston.info('View Tasks: Manager level access')
+        res.render('viewAssignments', { title: "SuperCanvasser", subtitle: "Choose Assignment", campaigns, logged: logValue, admin: admin, manager: manager, canvasser}); 
+    } else {
+        winston.info('View Tasks: Non-manager level access')
+        res.render('index', {title: "SuperCanvasser", logged: logValue});
+    }
+})
+
 // View Tasks page
 router.get('/viewTasks/:id', async function(req, res, next) {
     var id = req.params.id;
