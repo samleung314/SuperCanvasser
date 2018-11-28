@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 var dbHelper = require('./databaseHelper');
 var winston = require('../winston');
+var crypto = require('crypto');
+var bcrypt = require('bcryptjs');
 
 router.get('/', function (req, res, next) {
 });
@@ -13,13 +15,26 @@ router.get('/', function (req, res, next) {
 router.post('/login', function (req, res, next) {
     var v = req.body;
     winston.info('Query DB for user: ' + v.user)
-    db.collection('users').findOne({ 'username': v.user, 'password': v.pass }, function (err, ret) {
+
+    db.collection('users').findOne({ 'username': v.user}, function (err, ret) {
         if (err) return handleError(err);
-        if (ret != null) {
+        if (ret != null && bcrypt.compareSync(v.pass, ret.password)) { // Ensure that the given password matches the hashed password
             winston.info('User found in DB and log in')
-            res.cookie('name', ret.username)
-            console.log("Logged In: " + v.user);
-            res.redirect('/')
+            var hash = crypto.createHash('sha256'); // Create a randomly hashed session ID
+            hash.update(Math.random().toString());
+            var session = hash.digest('hex');
+            db.collection('sessions').remove({username: v.user}, function() { // Remove all other existing sessions for this user
+                db.collection('sessions').insertOne( // Insert the session ID into the sessions collection
+                    {
+                        username: v.user,
+                        session: session,
+                        expires: Date.now() + 15 * 60 * 1000 // with an expiration date of 15 minutes
+                    }, function() {
+                        res.cookie('session', session);
+                        res.redirect('/');
+                    }
+                );
+            });
         } else {
             winston.info('User not found in DB')
             res.render('login', { title: 'SuperCanvasser', logged: "Login", message: 'Invalid Credentials' });
@@ -40,12 +55,15 @@ router.post('/addUser', function (req, res, next) {
                 winston.info('Add User: Username already taken')
                 res.render('addUser', { title: 'SuperCanvasser', message: 'Username already taken. Please enter another.' });
             } else if (v.canvasser || v.campaignManager || v.sysAdmin) {
+                var salt = bcrypt.genSaltSync(10); // Hash and salt the given password, then store it in the database
+                var hash = bcrypt.hashSync(v.pass, salt);
+
                 var user = {
                     firstName: v.fname,
                     lastName: v.lname,
                     email: v.email,
                     username: v.user,
-                    password: v.pass,
+                    password: hash,
                     canvasser: Boolean(v.canvasser),
                     campaignManager: Boolean(v.campaignManager),
                     sysAdmin: Boolean(v.sysAdmin)
@@ -74,12 +92,15 @@ router.post('/register', function (req, res, next) {
                 winston.info('Canvasser Registration: Username already taken')
                 res.render('register', { title: 'SuperCanvasser', message: 'Username already taken. Please enter another.' });
             } else {
+                var salt = bcrypt.genSaltSync(10); // Hash and salt the given password, then store it in the database
+                var hash = bcrypt.hashSync(v.pass, salt);
+
                 var user = {
                     firstName: v.fname,
                     lastName: v.lname,
                     email: v.email,
                     username: v.user,
-                    password: v.pass,
+                    password: hash,
                     canvasser: true,
                     campaignManager: false,
                     sysAdmin: false

@@ -11,41 +11,61 @@ manager = false;
 canvasser = false;
 admin = false;
 username = null;
-async function setLogged(req) {
+async function setLogged(req, res) {
     //Keeps track of whether user is logged in or out
-    if (req.cookies.name == "" || req.cookies.name == null) {
-        logValue = "Login"
-        loggedIn = false;
-    } else {
+    if (req.cookies.session) {
         logValue = "Logout"
         loggedIn = true;
+    } else {
+        logValue = "Login"
+        loggedIn = false;
     }
-    await getUserData(req); // Wait for database to get user data
+    await getUserData(req, res); // Wait for database to get user data
 }
 
 // Get the user role data from the database
-async function getUserData(req) {
+async function getUserData(req, res) {
     return new Promise(function(resolve, reject) { // Create promise for retrieving user data
-        username = req.cookies.name;
-        if (username) {
-            db.collection('users').findOne({ 'username': username }, function (err, ret) {
+        var session = req.cookies.session;
+        if (session) { 
+            db.collection('sessions').findOne({'session': session}, function (err, ret) {
                 if (err) return handleError(err);
-                if (ret) { // User found
-                    manager = ret.campaignManager;
-                    canvasser = ret.canvasser;
-                    admin = ret.sysAdmin;
-                } else { // User not found
+                if (ret) {
+                    if (ret.expires < Date.now()) { // Session expired, remove from db
+                        db.collection('sessions').remove({'session': session});
+                        res.clearCookie('session');
+                        logValue = "Login"; // Set user to logged out
+                        loggedIn = false;
+                        manager = false;
+                        canvasser = false;
+                        admin = false;
+                        resolve();
+                    }
+
+                    db.collection('users').findOne({ 'username': ret.username }, function (err, ret) {
+                        if (ret) { // User found
+                            manager = ret.campaignManager;
+                            canvasser = ret.canvasser;
+                            admin = ret.sysAdmin;
+                        } else { // User not found
+                            manager = false;
+                            canvasser = false;
+                            admin = false;
+                        }
+                        resolve(); // Database contacted, resolve
+                    });
+                } else { // Session not found
                     manager = false;
                     canvasser = false;
                     admin = false;
+                    resolve(); // Database contacted, resolve
                 }
-                resolve(); // Database contacted, resolve
-            });
-        } else { // No username
+            })
+        } else { // No session
             manager = false;
             canvasser = false;
             admin = false;
-            resolve(); // No username provided, resolve
+            resolve(); // No session provided, resolve
         }
     });
 }
@@ -53,7 +73,7 @@ async function getUserData(req) {
 /* GET home page. */
 router.get('/', async function(req, res, next) {
     winston.info('Index page access')
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     if (!loggedIn) { //if you are logged out
         res.render('login', { title: "SuperCanvasser", logged: logValue, message: "Welcome. Please login.",  admin, manager, canvasser})
         winston.info('Prompt for login')
@@ -69,20 +89,21 @@ router.get('/login.hbs', function (req, res, next) {
         //if you are logged out
         //login
         winston.info('Prompt for login')
-        res.render('login', { title: 'SuperCanvasser', logged: logValue, admin, manager, canvasser });
+        res.render('login', { title: 'SuperCanvasser', logged: logValue});
     } else {
         //if you are logged in
         //logout
         winston.info('User logged out')
-        res.clearCookie('name');
-        console.log("bob");
+        var session = req.cookies.session;
+        db.collection('sessions').remove({'session': session});
+        res.clearCookie('session');
         res.render('login', { title: "SuperCanvasser", logged: "Login"});
     }
 });
 
 // SysAdmin add new user
 router.get('/addUser.hbs', async function (req, res, next) {
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     if (admin) {
         winston.info('Admin level page, access add user')
         res.render('addUser', { title: 'SuperCanvasser', logged: logValue, admin, manager, canvasser });
@@ -94,7 +115,7 @@ router.get('/addUser.hbs', async function (req, res, next) {
 
 // New user register as canvasser
 router.get('/register.hbs', async function (req, res, next) {
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     if (!admin && !manager && !canvasser) {
         winston.info('User is not admin, manager, or canvasser, prompt to register')
         res.render('register', { title: 'SuperCanvasser', logged: logValue, message: "This page is for canvasser registration. To become a manager please contact an administrator." });
@@ -106,7 +127,7 @@ router.get('/register.hbs', async function (req, res, next) {
 
 // Canvasser edit availability page
 router.get('/editAvailability.hbs', async function (req, res, next) {
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     if (canvasser) {
         winston.info('User is a canvasser, prepare info for the availability calendar.');
         var user = await dbHelper.getUser(req.cookies.name);
@@ -140,7 +161,7 @@ function campaignCompare(a, b) {
 // Campaign main page
 router.get('/campaigns.hbs', async function(req, res, next) {
     winston.info('Access campaign main page')
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     var campaigns = await dbHelper.getCampaigns();
     campaigns.sort(campaignCompare);
     if (manager) {
@@ -157,7 +178,7 @@ router.get('/addCampaign', async function(req, res, next) {
     winston.info('Access add campaign page')
     var message = req.query.message; // Load message and campaign (if failed to add)
     var campaign = req.query.campaign;
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     var managers = await dbHelper.getManagers(); // Load list of managers and canvassers
     var canvassers = await dbHelper.getCanvassers();
     if (manager) {
@@ -174,7 +195,7 @@ router.get('/addCampaign', async function(req, res, next) {
 // View Campaign page
 router.get('/campaign/:id', async function(req, res, next) {
     var id = parseInt(req.params.id); // Get the ID
-    await setLogged(req);
+    await setLogged(req, res);
     var campaign = await dbHelper.getCampaign(id); // Load the campaign based on the ID
     campaign.talk = campaign.talk.split('\n');
     var edit = true;
@@ -197,7 +218,7 @@ router.get('/editCampaign/:id', async function(req, res, next) {
     var message = req.query.message; // Load message and campaign (if failed to edit)
     var campaign = req.query.campaign;
     var id = parseInt(req.params.id);
-    await setLogged(req);
+    await setLogged(req, res);
     var managers = await dbHelper.getManagers(); // Load list of managers and canvassers
     var canvassers = await dbHelper.getCanvassers();
     winston.info('Access Edit Campaign ID: ' + id)
@@ -225,7 +246,7 @@ function userCompare(a, b) {
 
 // Users main page
 router.get('/users', async function(req, res, next) {
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     var users = await dbHelper.getUsers();
     console.log(users);
     users.sort(userCompare);
@@ -240,6 +261,7 @@ router.get('/users', async function(req, res, next) {
 
 // Edit User page
 router.get('/editUser/:id', async function(req, res, next) {
+    await setLogged(req, res);
     var id = req.params.id;
     console.log(id);
     var user = await dbHelper.getUser(id); // Load the user based on the username
@@ -256,7 +278,7 @@ router.get('/editUser/:id', async function(req, res, next) {
 
 // Edit global variables page
 router.get('/editGlobals', async function(req, res, next) {
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     var globals = await dbHelper.getGlobals();
     globals = JSON.stringify(globals);
     console.log(globals);
@@ -271,7 +293,7 @@ router.get('/editGlobals', async function(req, res, next) {
 
 // Start canvassing
 router.get('/startCanvass', async function(req, res, next) {
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     var date = new Date();
     date = date.toLocaleString('en-US');
     date = date.split(',')[0]; // Get the date (only the month, day, year)
@@ -301,7 +323,7 @@ router.get('/startCanvass', async function(req, res, next) {
 
 // Canvass
 router.get('/canvass', async function(req, res, next) {
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     var date = new Date();
     date = date.toLocaleString('en-US');
     date = date.split(',')[0]; // Get the date (only the month, day, year)
@@ -356,6 +378,7 @@ router.get('/canvass', async function(req, res, next) {
 
 
 router.get('/viewAssignments', async function(req, res, next) {
+    await setLogged(req, res);
     var campaigns = await dbHelper.getCampaigns();
     campaigns.sort(campaignCompare);
     console.log(campaigns);
@@ -370,6 +393,7 @@ router.get('/viewAssignments', async function(req, res, next) {
 
 // View Tasks page
 router.get('/viewTasks/:id', async function(req, res, next) {
+    await setLogged(req, res);
     var id = req.params.id;
     console.log(id);
     tasks = await dbHelper.getTasks(id); // Load the tasks based on the canvassing id    console.log(id);
@@ -419,6 +443,7 @@ function compareDates(laterDate, earlierDate) {
 
 // View Upcoming Canvassing Assignments page for hw 7 ;)
 router.get('/upcoming', async function(req, res, next) {
+    await setLogged(req, res);
     tasks = await dbHelper.getUpcomingTasks(username); // Load the tasks based on the canvassing id    console.log(id);
 
     var date = new Date();
@@ -443,7 +468,7 @@ router.get('/upcoming', async function(req, res, next) {
 // View Task page
 router.get('/viewTask/:id', async function(req, res, next) {
     var id = parseInt(req.params.id); // Get the ID
-    await setLogged(req);
+    await setLogged(req, res);
     var task = await dbHelper.getTask(id); // Load the task based on the ID
     winston.info('Access Task: ' + id)
 
@@ -469,7 +494,7 @@ router.get('/viewTask/:id', async function(req, res, next) {
 // Results page
 router.get('/results.hbs', async function(req, res, next) {
     winston.info('Access results main page')
-    await setLogged(req); // Wait for database
+    await setLogged(req, res); // Wait for database
     var campaigns = await dbHelper.getCampaigns();
     campaigns.sort(campaignCompare);
     if (manager) {
@@ -489,7 +514,7 @@ function percentageMap(value, total) { // Function that computes the percentage 
 // Campaign results page
 router.get('/results/:id', async function(req, res, next) {
     var id = parseInt(req.params.id); // Get the ID
-    await setLogged(req);
+    await setLogged(req, res);
     var campaign = await dbHelper.getCampaign(id); // Load the campaign based on the ID
     campaign.talk = campaign.talk.split('\n');
     winston.info('Access campaign: ' + id)
