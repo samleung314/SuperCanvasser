@@ -54,7 +54,7 @@ app.use(function(err, req, res, next) {
 
 //start http and https server
 //http://35.237.133.218:8080
-//https://35.237.133.218/:8443
+//https://35.237.133.218:8443
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer({
   key: fs.readFileSync('server-key.pem'),
