@@ -1,26 +1,31 @@
 <body>
     <div class="center" style="text-align: center;">
-        {{message}}
+        <br>
+        <h3>{{message}}</h3>
+        <br>
+        <br>
+        <br>
         <form action="/database/login" method="post">
             <table align="center">
                 <tr>
-                    <td align="right">Username</td>
+                    <td align="right"><h4>Username</h4></td>
                     <td align="left">
-                        <input type="text" name="user" />
+                        <input type="text" name="user" class="form-control" placeholder="Username"/>
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Password</td>
+                    <td align="right"><h4>Password</h4></td>
                     <td align="left">
-                        <input type="password" name="pass" />
+                        <input type="password" name="pass" class="form-control" placeholder="Password" />
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="Login">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Login">
         </form>
-        or
+        <br>
         <form action="/register.hbs">
-            <input type="submit" value="Register">
+            <input type="submit" class="btn btn-primary" value="Register">
             <br>
         </form>
     </div>

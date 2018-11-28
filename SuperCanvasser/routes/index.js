@@ -75,7 +75,8 @@ router.get('/login.hbs', function (req, res, next) {
         //logout
         winston.info('User logged out')
         res.clearCookie('name');
-        res.render('login', { title: "SuperCanvasser", logged: "Login", admin, manager, canvasser});
+        console.log("bob");
+        res.render('login', { title: "SuperCanvasser", logged: "Login"});
     }
 });
 

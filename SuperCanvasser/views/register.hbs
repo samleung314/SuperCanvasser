@@ -1,41 +1,43 @@
 <body>
     <div class="center" style="text-align: center;">
-        {{message}}<p></p>
+        <br>
+        <h5>{{message}}</h5><p></p>
+        <br>
+        <br>
         <form action="/database/register" method="post">
             <table align="center">
                 <tr>
-                    <td align="right">First Name </td>
+                    <td align="right"><h5>First Name </h5></td>
                     <td align="left">
-                        <input type="text" name="fname" value="">
+                        <input type="text" class="form-control" name="fname" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Last Name </td>
+                    <td align="right"><h5>Last Name </h5></td>
                     <td align="left">
-                        <input type="text" name="lname" value="">
-                        <br>
+                        <input type="text" class="form-control" name="lname" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Email </td>
+                    <td align="right"><h5>Email </h5></td>
                     <td align="left">
-                        <input type="text" name="email" value="">
+                        <input type="text" class="form-control" name="email" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Username </td>
+                    <td align="right"><h5>Username </h5></td>
                     <td align="left">
-                        <input type="text" name="user" value="">
+                        <input type="text" class="form-control" name="user" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Password </td>
+                    <td align="right"><h5>Password </h5></td>
                     <td align="left">
-                        <input type="password" id="pass" name="pass" value="">
+                        <input type="password" class="form-control" id="pass" name="pass" value="">
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="Submit">
+            <input type="submit" class="btn btn-primary" value="Submit">
         </form>
     </div>
 </body>
