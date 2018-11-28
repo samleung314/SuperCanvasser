@@ -10,6 +10,7 @@ loggedIn = false;
 manager = false;
 canvasser = false;
 admin = false;
+username = null;
 async function setLogged(req) {
     //Keeps track of whether user is logged in or out
     if (req.cookies.name == "" || req.cookies.name == null) {
@@ -25,7 +26,7 @@ async function setLogged(req) {
 // Get the user role data from the database
 async function getUserData(req) {
     return new Promise(function(resolve, reject) { // Create promise for retrieving user data
-        var username = req.cookies.name;
+        username = req.cookies.name;
         if (username) {
             db.collection('users').findOne({ 'username': username }, function (err, ret) {
                 if (err) return handleError(err);
@@ -402,10 +403,8 @@ function compareDates(laterDate, earlierDate) {
 }
 
 // View Upcoming Canvassing Assignments page for hw 7 ;)
-router.get('/upcoming/:name', async function(req, res, next) {
-    var id = req.params.name;
-    console.log(id);
-    tasks = await dbHelper.getUpcomingTasks(id); // Load the tasks based on the canvassing id    console.log(id);
+router.get('/upcoming', async function(req, res, next) {
+    tasks = await dbHelper.getUpcomingTasks(username); // Load the tasks based on the canvassing id    console.log(id);
 
     var date = new Date();
     date = date.toLocaleString('en-US');
@@ -415,7 +414,7 @@ router.get('/upcoming/:name', async function(req, res, next) {
     tasks = checkDates(tasks, date);
 
     console.log(tasks);
-    winston.info('Viewing Upcoming Canvassing Assignment: ' + id)
+    winston.info('Viewing Upcoming Canvassing Assignment: ' + username)
     if (manager) {
         winston.info('View Upcoming Canvassing Assignment: Manager level access')
         res.render('upcoming', { title: "SuperCanvasser", subtitle: "View Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
