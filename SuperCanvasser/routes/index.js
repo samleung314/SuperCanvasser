@@ -430,7 +430,7 @@ router.get('/upcoming', async function(req, res, next) {
 
     console.log(tasks);
     winston.info('Viewing Upcoming Canvassing Assignment: ' + username)
-    if (manager) {
+    if (canvasser) {
         winston.info('View Upcoming Canvassing Assignment: Manager level access')
         res.render('upcoming', { title: "SuperCanvasser", subtitle: "View Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
     } else {
@@ -455,7 +455,7 @@ router.get('/viewTask/:id', async function(req, res, next) {
         }
     }
 
-    if (manager) {
+    if (manager || canvasser) {
         winston.info('View Task: Manager level access')
         res.render('viewTask', { title: "SuperCanvasser", subtitle: "Viewing Task " + id, completedLocations, logged: logValue, task, manager: manager, admin: admin, canvasser});
     } else {
