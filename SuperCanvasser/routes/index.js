@@ -368,16 +368,57 @@ router.get('/viewTasks/:id', async function(req, res, next) {
     }
 })
 
+function checkDates(tasks, date) {
+    var newTasks = new Array();
+
+    for (var i = 0; i < tasks.length; i++) {
+        if (compareDates(tasks[i].date, date)) {
+            newTasks.push(tasks[i]);
+        }
+    }
+
+    console.log("new");
+    console.log(newTasks);
+    return newTasks;
+}
+
+function compareDates(laterDate, earlierDate) {
+    var date1 = laterDate.split("/");
+    var date2 = earlierDate.split("/");
+
+    if (parseInt(date1[2]) < parseInt(date2[2])) {
+        return false;
+    }
+
+    if (parseInt(date1[0]) < parseInt(date2[0])) {
+        return false;
+    } else if (parseInt(date1[0]) == parseInt(date2[0])) {
+        if (parseInt(date1[1]) < parseInt(date2[1])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // View Upcoming Canvassing Assignments page for hw 7 ;)
-router.get('/upcoming/:id', async function(req, res, next) {
-    var id = req.params.id;
+router.get('/upcoming/:name', async function(req, res, next) {
+    var id = req.params.name;
     console.log(id);
-    tasks = await dbHelper.getTasks(id); // Load the tasks based on the canvassing id    console.log(id);
+    tasks = await dbHelper.getUpcomingTasks(id); // Load the tasks based on the canvassing id    console.log(id);
+
+    var date = new Date();
+    date = date.toLocaleString('en-US');
+    date = date.split(',')[0]; // Get the date (only the month, day, year)
+    console.log(date);
+
+    tasks = checkDates(tasks, date);
+
     console.log(tasks);
     winston.info('Viewing Upcoming Canvassing Assignment: ' + id)
     if (manager) {
         winston.info('View Upcoming Canvassing Assignment: Manager level access')
-        res.render('upcoming', { title: "SuperCanvasser", subtitle: "Viewing Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
+        res.render('upcoming', { title: "SuperCanvasser", subtitle: "View Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
     } else {
         winston.info('View Upcoming Canvassing Assignment: Non-manager level access')
         // res.render('upcoming', { title: "SuperCanvasser", subtitle: "Viewing Upcoming Canvassing Assignments", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 

@@ -131,6 +131,17 @@ module.exports = {
         })
     },
 
+    getUpcomingTasks: async function(username) { // Get all tasks for specific canvassing assignment
+        return new Promise(function(resolve, reject) {
+            db.collection('tasks').find({'username': username}, function(err, ret) {
+                if (ret) {
+                    resolve(ret.toArray()); // Resolve, return found tasks
+                }
+                resolve(); // Resolve, no tasks found
+            })
+        })
+    },
+
     getTask: async function(campaignId) { // Get task for specific canvassing assignment
         return new Promise(function(resolve, reject) {
             intId = parseInt(campaignId)
