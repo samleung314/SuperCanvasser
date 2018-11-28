@@ -366,7 +366,7 @@ router.post('/canvass', async function(req, res, next) {
     })
     
     var responses = [];
-    for (var i = 0;i < Object.keys(v).length - 4;i += 1) { // We know there are 4 other keys besides the questions, so Object.keys(v).length - 4 is the number of questions there are
+    for (var i = 0;i < Object.keys(v).length - 5;i += 1) { // We know there are 4 other keys besides the questions, so Object.keys(v).length - 4 is the number of questions there are
         responses.push(v['question' + i]); // Parse responses from all questions
     }
     var result = { // Construct a result object

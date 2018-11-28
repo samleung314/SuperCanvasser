@@ -465,4 +465,96 @@ router.get('/viewTask/:id', async function(req, res, next) {
     }   
 })
 
+// Results page
+router.get('/results.hbs', async function(req, res, next) {
+    winston.info('Access results main page')
+    await setLogged(req); // Wait for database
+    var campaigns = await dbHelper.getCampaigns();
+    campaigns.sort(campaignCompare);
+    if (manager) {
+        winston.info('Manager access, manage campaigns')
+        res.render('results', {title: "SuperCanvasser", logged: logValue, campaigns, admin, manager, canvasser});
+    } else {
+        winston.info('Non-manager access, redirect to index page')
+        res.render('index', {title: "SuperCanvasser", logged: logValue, admin, manager, canvasser});
+    } 
+})
+
+function percentageMap(value, total) { // Function that computes the percentage to a certain amount of digits given a value and the total
+    var x = value / total * 100;
+    return x.toFixed(2);
+}
+
+// Campaign results page
+router.get('/results/:id', async function(req, res, next) {
+    var id = parseInt(req.params.id); // Get the ID
+    await setLogged(req);
+    var campaign = await dbHelper.getCampaign(id); // Load the campaign based on the ID
+    campaign.talk = campaign.talk.split('\n');
+    winston.info('Access campaign: ' + id)
+
+    var results = await dbHelper.getResults(id); // Load the campaign results based on the ID
+
+    var responses = []; // Stores the response statistics for each question
+    var ratings = [0, 0, 0, 0, 0, 0]; // Ratings counts for 0, 1, 2, 3, 4, 5
+    for (var i = 0;i < campaign.questions.length;i += 1) {
+        var response = { // Construct a new response object for each question
+            yes: 0,
+            no: 0,
+            na: 0,
+            question: campaign.questions[i]
+        }
+        responses.push(response);
+    }
+    var noResponse = 0; // Number of times canvassers did not speak with anyone
+    var s1 = 0; // Used to calculate std dev
+    var s2 = 0;
+    var avg = 0;
+    var total = results.length;
+    for (var i = 0;i < results.length;i += 1) { // Iterate over all results
+        var result = results[i];
+        if (result.spoke == "yes") { // If a canvasser spoke with someone, modify the stats
+            for (var j = 0;j < result.responses.length;j += 1) {
+                if (result.responses[j] == "yes") { // Increment the response counter for each question
+                    responses[j].yes += 1;
+                } else if (result.responses[j] == "no") {
+                    responses[j].no += 1;
+                } else {
+                    responses[j].na += 1;
+                }
+            }
+
+            var rating = parseInt(result.rating); // Get the rating
+            ratings[rating] += 1; // Increment the rating counter
+            s1 += rating // Computer avg and std dev intermediate values
+            s2 += rating * rating;
+            avg += rating
+        } else {
+            result.rating = -1; // Set rating to -1 to mean that the canvasser did not speak with anyone
+            noResponse += 1;
+        }
+    }
+
+    var stdDev = Math.sqrt((total - noResponse) * s2 - s1 * s1) / (total - noResponse); // Calculate std dev and average
+    stdDev = stdDev.toFixed(6);
+    avg = avg / (total - noResponse);
+    avg = avg.toFixed(6);
+    responses.forEach((response) => { // For each response, compute
+        response.yesNaPct = percentageMap(response.yes, (total - noResponse)); // Percentage of yes out of all responses
+        response.noNaPct = percentageMap(response.no, (total - noResponse)); // Percentage of no out of all responses
+        response.naPct = percentageMap(response.na, (total - noResponse)); // Percentage of no answer out of all responses
+        response.yesPct = percentageMap(response.yes, (response.yes + response.no)); // Percentage of yes out of all yes/no responses only
+        response.noPct = percentageMap(response.no, (response.yes + response.no)); // Percentage of no out of all yes/no responses only
+    });
+    var ratingsPct = ratings.map(function(x) {return percentageMap(x, (total - noResponse));}); // Calculate the ratings percentages
+
+    if (manager) {
+        winston.info('View Campaign: Manager level access') // Pass all the statistics values to be rendered by results front-end
+        res.render('result.hbs', {title: "SuperCanvasser", logged: logValue, campaign, results, responses, ratings, ratingsPct, noResponse, total, avg, stdDev, admin, manager, canvasser});
+    } else {
+        winston.info('View Campaign: Non-manager access, redirect to index')
+        res.render('index', {title: "SuperCanvasser", logged: logValue, admin, manager, canvasser});
+    }   
+})
+
 module.exports = router;

@@ -1,0 +1,229 @@
+<h1>Campaign {{results.campaignID}} Results</h1>
+<br>
+<br>
+<div>
+    <center>
+        <button type="button" class="btn btn-primary" id="tableToggle" disabled>Table</button>
+        <button type="button" class="btn" id="statsToggle">Stats</button>
+        <button type="button" class="btn" id="visualToggle" disabled>Visual</button>
+    </center>
+</div>
+<br>
+<div id="table">
+    <table class="table">
+        <tr>
+            <th>
+                Canvasser
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Spoke With Someone?
+            </th>
+            <th>
+                Rating
+            </th>
+            {{#each campaign.questions}}
+            <th>
+                {{this}}
+            </th>
+            {{/each}}
+            <th>
+                Timestamp
+            </th>
+            <th>
+                Notes
+            </th>
+        </tr>
+        {{#each results}}
+            <tr>
+                <td>
+                    {{username}}
+                </td>
+                <td id="location{{@index}}">
+                    {{location}}
+                </td>
+                <td>
+                    {{spoke}}
+                </td>
+                <td id="ratingresponse{{@index}}">
+                    {{rating}}
+                </td>
+                {{#each responses}}
+                <td>
+                    {{this}}
+                </td>
+                {{/each}}
+                <td>
+                    {{time}}
+                </td>
+                <td>
+                    {{notes}}
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</div>
+<div id="stats">
+    <center><h3>Ratings Stats</h3></center>
+    <table class="table">
+        <tr>
+            <th>
+                Rating
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Percent
+            </th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td id="rating0">{{ratings.[0]}}</td>
+            <td>{{ratingsPct.[0]}}%</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td id="rating1">{{ratings.[1]}}</td>
+            <td>{{ratingsPct.[1]}}%</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td id="rating2">{{ratings.[2]}}</td>
+            <td>{{ratingsPct.[2]}}%</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td id="rating3">{{ratings.[3]}}</td>
+            <td>{{ratingsPct.[3]}}%</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td id="rating4">{{ratings.[4]}}</td>
+            <td>{{ratingsPct.[4]}}%</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td id="rating5">{{ratings.[5]}}</td>
+            <td>{{ratingsPct.[5]}}%</td>
+        </tr>
+        <tr>
+            <th>
+                Average
+            </th>
+            <td>
+                {{avg}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Standard Deviation
+            </th>
+            <td>
+                {{stdDev}}
+            </td>
+        </tr>
+    </table>
+    <center><div id="ratingsPlot"></div></center>
+    <div id="responses">
+        {{#each responses}}
+            <center><div id="response{{@index}}">
+                <br><br><br><hr>
+                <h3>{{question}}</h3>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Response
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                        <th>
+                            Percentage of All Responses
+                        </th>
+                        <th>
+                            Percentage of All Yes/No Responses
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Yes
+                        </td>
+                        <td id="response{{@index}}Yes">
+                            {{yes}}
+                        </td>
+                        <td>
+                            {{yesNaPct}}%
+                        </td>
+                        <td>
+                            {{yesPct}}%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            No
+                        </td>
+                        <td id="response{{@index}}No">
+                            {{no}}
+                        </td>
+                        <td>
+                            {{noNaPct}}%
+                        </td>
+                        <td>
+                            {{noPct}}%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            No Answer
+                        </td>
+                        <td id="response{{@index}}Na">
+                            {{na}}%
+                        </td>
+                        <td>
+                            {{naPct}}%
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+            </table>
+            <div id="response{{@index}}Plot"></div>
+            </div></center>
+        {{/each}}
+    </div>
+
+
+</div>
+<div id="visual">
+    <center><div id="map"></div></center>
+    <br><br>
+    <table class="table">
+        <tr>
+            <th>Rating</th>
+            <td>No Rating</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <th>Marker</th>
+            <td><img src="http://maps.google.com/mapfiles/ms/micons/lightblue.png" class="icon"></td>
+            <td><img src="http://maps.google.com/mapfiles/ms/micons/red.png" class="icon"></td>
+            <td><img src="http://maps.google.com/mapfiles/ms/micons/orange.png" class="icon"></td>
+            <td><img src="http://maps.google.com/mapfiles/ms/micons/yellow.png" class="icon"></td>
+            <td><img src="http://maps.google.com/mapfiles/ms/micons/green.png" class="icon"></td>
+            <td><img src="http://maps.google.com/mapfiles/ms/micons/blue.png" class="icon"></td>
+            <td><img src="http://maps.google.com/mapfiles/ms/micons/purple.png" class="icon"></td>
+        </tr>
+    </table>
+</div>
+<link rel='stylesheet' href='/stylesheets/result.css'/>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+<script src="/scripts/result.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIMd_lgKT8jSNhU6h-wDl2mu6ekkYMvGc&callback=initMap"></script>

@@ -152,5 +152,17 @@ module.exports = {
                 resolve(); // Resolve, no task found
             })
         })
+    },
+
+    getResults: async function(campaignId) { // Get all results for a given campaign
+        return new Promise(function(resolve, reject) {
+            intId = parseInt(campaignId)
+            db.collection('results').find({'campaignID': intId}, function(err, ret) {
+                if (ret) {
+                    resolve(ret.toArray()); // Resolve, return found task
+                }
+                resolve(); // Resolve, no task found
+            })
+        });
     }
 }

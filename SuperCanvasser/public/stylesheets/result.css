@@ -1,0 +1,21 @@
+#table {
+    display: block;
+}
+
+#stats {
+    display: none;
+}
+
+#visual {
+    display: block;
+}
+
+#map {
+    height: 800px;  /* The height is 400 pixels */
+    width: 800px;  /* The width is the width of the web page */
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+}

@@ -1,0 +1,13 @@
+<h1>View Results</h1>
+<br>
+<br>
+<div id="campaigns">
+    {{#each campaigns}}
+        <a href="results/{{id}}">
+            <div id="campaign{{id}}" class="campaign">
+                <center><p style="font-size: 16px;">Campaign {{id}}: {{startDate}} to {{endDate}}</p></center>
+            </div>
+        </a>
+    {{/each}}
+</div>
+<link rel='stylesheet' href='/stylesheets/campaigns.css'/>
