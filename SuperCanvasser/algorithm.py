@@ -53,7 +53,7 @@ def CreateDistanceCallback(dist_matrix):
 def add_distance_dimension(routing, dist_callback):
   """Add Global Span constraint"""
   distance = "Distance"
-  maximum_distance = 999999
+  maximum_distance = 999999999
   routing.AddDimension(
     dist_callback,
     0, # null slack

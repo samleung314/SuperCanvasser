@@ -564,7 +564,6 @@ router.post('/generateAssignments', async function (req, res, next) {
     
         var failed = false;
         for (var i = 0;i < nassignments;i += 1) {
-            console.log(availabilityMap);
             var done = false;
             while (!done && !failed) {
                 var minCanvasser = findMinAssignmentCanvasser(assignmentMap, canvassers);
@@ -596,6 +595,7 @@ router.post('/generateAssignments', async function (req, res, next) {
                 }
             }
         }
+        console.log(availabilityMap);
         console.log(assignmentMap);
         console.log(failed);
     
@@ -627,8 +627,12 @@ router.post('/generateAssignments', async function (req, res, next) {
                     taskID += 1;
                 }
             }
+            db.collection('campaigns').updateOne({ 'id': campaignID }, { // Update the campaign in the database
+                $set: {
+                    flag: 1
+                }
+            });
         }
-    
         res.redirect('/campaign/' + campaignID);
     });
 });
