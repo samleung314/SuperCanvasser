@@ -596,6 +596,13 @@ router.post('/generateAssignments', async function (req, res, next) {
             }
         }
         console.log(availabilityMap);
+        for (var canv in availabilityMap) {
+            db.collection('users').updateOne({ 'username': canv }, { // Push updated availabilities
+                $set: {
+                    availability: availabilityMap[canv]
+                }
+            });
+        }
         console.log(assignmentMap);
         console.log(failed);
     
