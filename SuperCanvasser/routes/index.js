@@ -44,6 +44,7 @@ async function getUserData(req, res) {
 
                     db.collection('users').findOne({ 'username': ret.username }, function (err, ret) {
                         if (ret) { // User found
+                            username = ret.username;
                             manager = ret.campaignManager;
                             canvasser = ret.canvasser;
                             admin = ret.sysAdmin;
@@ -130,7 +131,7 @@ router.get('/editAvailability.hbs', async function (req, res, next) {
     await setLogged(req, res); // Wait for database
     if (canvasser) {
         winston.info('User is a canvasser, prepare info for the availability calendar.');
-        var user = await dbHelper.getUser(req.cookies.name);
+        var user = await dbHelper.getUser(username);
         var dates = user.availability;
         var length = 0; //number of dates already marked available
         if (dates != null) {
@@ -142,7 +143,7 @@ router.get('/editAvailability.hbs', async function (req, res, next) {
             var date = new Date(dates[i]);
             availability.push(quote.concat(date, quote));
         }
-        res.render('editAvailability', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser, availability: availability});
+        res.render('editAvailability', { title: "SuperCanvasser", username, logged: logValue, admin, manager, canvasser, availability: availability});
     } else {
         winston.info('User is not a canvasser, redirect to index page')
         res.render('index', { title: "SuperCanvasser", logged: logValue, admin, manager, canvasser });
@@ -297,23 +298,23 @@ router.get('/startCanvass', async function(req, res, next) {
     var date = new Date();
     date = date.toLocaleString('en-US');
     date = date.split(',')[0]; // Get the date (only the month, day, year)
-    var task = await dbHelper.findTask(req.cookies.name, date); // Query the database for a task using your username and the date
+    var task = await dbHelper.findTask(username, date); // Query the database for a task using your username and the date
     if (canvasser) {
         if (task) { // If the task exists
             if (task.locations.length == task.completedLocations.length) { // and all locations are completed
                 winston.info('Start Canvass: Canvasser level access'); // then the canvassing is complete and no task is shown
-                res.render('noTask', {title: "SuperCanvasser", noTask: false, username: req.cookies.name, currentLocation, date, logged: logValue, admin, manager, canvasser});
+                res.render('noTask', {title: "SuperCanvasser", noTask: false, username, currentLocation, date, logged: logValue, admin, manager, canvasser});
             } else {
                 winston.info('Start Canvass: Canvasser level access');
                 var currentLocation = false;
                 if (task.currentLocation) { // Otherwise check if there is already a current location (picking up from where we left off), and prompt for current location options
                     currentLocation = true;
                 }
-                res.render('startCanvass', {title: "SuperCanvasser", username: req.cookies.name, currentLocation, date, logged: logValue, admin, manager, canvasser});
+                res.render('startCanvass', {title: "SuperCanvasser", username, currentLocation, date, logged: logValue, admin, manager, canvasser});
             }
         } else { // No task
             winston.info('Start Canvass: No task found');
-            res.render('noTask', {title: "SuperCanvasser", noTask: true, username: req.cookies.name, date, logged: logValue, admin, manager, canvasser});
+            res.render('noTask', {title: "SuperCanvasser", noTask: true, username, date, logged: logValue, admin, manager, canvasser});
         }
     } else {
         winston.info('Start Canvass: Non-canvasser access, redirect to index');
@@ -327,7 +328,7 @@ router.get('/canvass', async function(req, res, next) {
     var date = new Date();
     date = date.toLocaleString('en-US');
     date = date.split(',')[0]; // Get the date (only the month, day, year)
-    var task = await dbHelper.findTask(req.cookies.name, date); // Query the database for a task using your username and the date
+    var task = await dbHelper.findTask(username, date); // Query the database for a task using your username and the date
 
     if (canvasser) {
         if (task) { // If the task exists
@@ -358,7 +359,7 @@ router.get('/canvass', async function(req, res, next) {
 
             if (locations.length == 0) { // If all locations are completed
                 winston.info('Canvass: No remaining locations in task'); // then the canvassing is complete and no task is shown
-                res.render('noTask', {title: "SuperCanvasser", noTask: false, username: req.cookies.name, date, logged: logValue, admin, manager, canvasser});
+                res.render('noTask', {title: "SuperCanvasser", noTask: false, username, date, logged: logValue, admin, manager, canvasser});
             } else if (task.currentLocation) { // If there is a selected current location
                 winston.info('Canvass: Canvasser level access'); // allow the user to canvass
                 res.render('canvass', {title: "SuperCanvasser", task, locations, destination, destinationID, campaign, logged: logValue, admin, manager, canvasser});
@@ -368,7 +369,7 @@ router.get('/canvass', async function(req, res, next) {
             }
         } else { // No task
             winston.info('Canvass: No task found');
-            res.render('noTask', {title: "SuperCanvasser", noTask: true, username: req.cookies.name, date, logged: logValue, admin, manager, canvasser});           
+            res.render('noTask', {title: "SuperCanvasser", noTask: true, username, date, logged: logValue, admin, manager, canvasser});           
         }
     } else {
         winston.info('Canvass: Non-canvasser access, redirect to index');
@@ -573,6 +574,7 @@ router.get('/results/:id', async function(req, res, next) {
         response.noPct = percentageMap(response.no, (response.yes + response.no)); // Percentage of no out of all yes/no responses only
     });
     var ratingsPct = ratings.map(function(x) {return percentageMap(x, (total - noResponse));}); // Calculate the ratings percentages
+    console.log(responses);
 
     if (manager) {
         winston.info('View Campaign: Manager level access') // Pass all the statistics values to be rendered by results front-end

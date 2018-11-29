@@ -39,6 +39,12 @@
     {{/each}}
 </ul>
 <div id="map"></div>
+<br>
+<form id="form" action="../database/generateAssignments" method="post">
+<input type="hidden" name="campaignID" value="{{campaign.id}}">
+<button id="generate" type="submit" class="btn btn-primary" disabled>Generate Assignments</button>
+</form>
+<p id="flag" style="display:none">{{campaign.flag}}</p>
 <link rel='stylesheet' href='/stylesheets/campaign.css'/>
 <script src="/scripts/campaignMap.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIMd_lgKT8jSNhU6h-wDl2mu6ekkYMvGc&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIMd_lgKT8jSNhU6h-wDl2mu6ekkYMvGc&callback=initMap&libraries=geometry"></script>

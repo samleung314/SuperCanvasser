@@ -11,6 +11,37 @@ var bcrypt = require('bcryptjs');
 router.get('/', function (req, res, next) {
 });
 
+var username = "";
+// Get the user role data from the database
+async function getUserData(req, res) {
+    return new Promise(function(resolve, reject) { // Create promise for retrieving user data
+        var session = req.cookies.session;
+        if (session) { 
+            db.collection('sessions').findOne({'session': session}, function (err, ret) {
+                if (err) return handleError(err);
+                if (ret) {
+                    if (ret.expires < Date.now()) { // Session expired, remove from db
+                        db.collection('sessions').remove({'session': session});
+                        res.clearCookie('session');
+                        resolve();
+                    }
+
+                    db.collection('users').findOne({ 'username': ret.username }, function (err, ret) {
+                        if (ret) { // User found
+                            username = ret.username;
+                        }
+                        resolve(); // Database contacted, resolve
+                    });
+                } else { // Session not found
+                    resolve(); // Database contacted, resolve
+                }
+            })
+        } else { // No session
+            resolve(); // No session provided, resolve
+        }
+    });
+}
+
 /* User login*/
 router.post('/login', function (req, res, next) {
     var v = req.body;
@@ -200,7 +231,8 @@ router.post('/addCampaign', async function(req, res, next) {
         questions,
         duration: v.duration,
         locations: parsedLocations, // Make an array of locations
-        canvassers
+        canvassers,
+        flag: 1
     };
 
     var message = campaignError(v, managers, canvassers); // Check for errors
@@ -349,6 +381,7 @@ router.post('/editGlobals', async function(req, res, next) {
 router.post('/startCanvass', async function(req, res, next) {
     var v = req.body;
     var start = v.start; // Get the starting location
+    await getUserData(req, res);
 
     if (!start) { // If there is no starting location specified, prompt the user again
         res.redirect('/startCanvass');
@@ -357,8 +390,8 @@ router.post('/startCanvass', async function(req, res, next) {
         date = date.toLocaleString('en-US');
         date = date.split(',')[0]; // Get the date so we can update the task object
 
-        winston.info('Start Canvass: User ' + req.cookies.name + ' sucessfully started canvassing with current location ' + start );
-        db.collection('tasks').updateOne({'username': req.cookies.name, 'date': date}, { // Update the user in the database
+        winston.info('Start Canvass: User ' + username + ' sucessfully started canvassing with current location ' + start );
+        db.collection('tasks').updateOne({'username': username, 'date': date}, { // Update the user in the database
             $set: { // Update task object in database with new starting location (so there is now a current location)
                 currentLocation: start,       
             }
@@ -371,15 +404,16 @@ router.post('/startCanvass', async function(req, res, next) {
 // Canvass
 router.post('/canvass', async function(req, res, next) {
     var v = req.body;
-    
+    await getUserData(req, res);
+
     var date = new Date();
     date = date.toLocaleString('en-US');
     date = date.split(',')[0]; // Get the date
-    var task = await dbHelper.findTask(req.cookies.name, date); // Use date and username to query database for task
+    var task = await dbHelper.findTask(username, date); // Use date and username to query database for task
     var completedLocations = task.completedLocations;
     completedLocations.push(parseInt(v.destinationid)); // Add current destination to completed locations list
 
-    db.collection('tasks').updateOne({'username': req.cookies.name, 'date': date}, {
+    db.collection('tasks').updateOne({'username': username, 'date': date}, {
         $set: { // Update the task with new completed locations and set current location to the location we just completed
             currentLocation: v.destination,
             completedLocations
@@ -391,7 +425,7 @@ router.post('/canvass', async function(req, res, next) {
         responses.push(v['question' + i]); // Parse responses from all questions
     }
     var result = { // Construct a result object
-        username: req.cookies.name,
+        username: username,
         time: Date(),
         location: v.destination,
         spoke: v.spoke,
@@ -402,7 +436,7 @@ router.post('/canvass', async function(req, res, next) {
     };
     db.collection('results').insertOne(result); // Insert it into the database
 
-    winston.info('Canvass: User ' + req.cookies.name + ' sucessfully canvassed at location ' + v.destination);
+    winston.info('Canvass: User ' + username + ' sucessfully canvassed at location ' + v.destination);
     res.redirect('/canvass'); // Allow the user to continue canvassing
 });
 
@@ -411,14 +445,14 @@ router.post('/editAvailability', async function (req, res, next) {
     var v = req.body;
     var dates = v.dates.split(",");
     if (dates === undefined || dates.length == 0 || dates[0] == "") {
-        db.collection('users').updateOne({ 'username': req.cookies.name }, { // Remove all available dates
+        db.collection('users').updateOne({ 'username': v.username }, { // Remove all available dates
             $set: {
                 availability: null
             }
         });
         winston.info('All available dates cleared.');
     } else {
-        db.collection('users').updateOne({ 'username': req.cookies.name }, { // Update the user in the database
+        db.collection('users').updateOne({ 'username': v.username }, { // Update the user in the database
             $set: {
                 availability: dates
             }
@@ -426,6 +460,177 @@ router.post('/editAvailability', async function (req, res, next) {
         winston.info('Canvasser availability updated.');
     }
     res.redirect('back');
+});
+
+function findMinAssignmentCanvasser(assignmentMap, canvassers) {
+    var min = assignmentMap[canvassers[0]].length;
+    var canvasser = canvassers[0];
+    for (var i = 0;i < canvassers.length;i += 1) {
+        if (assignmentMap[canvassers[i]].length < min) {
+            min = assignmentMap[canvassers[i]].length;
+            canvasser = canvassers[i];
+        }
+    }
+    return canvasser;
+}
+
+router.post('/generateAssignments', async function (req, res, next) {
+    var v = req.body;
+    var locations = [];
+    var locmap = JSON.parse(v.locmap);
+    var nlocations = parseInt(v.locationn);
+    var distanceMat = JSON.parse(v.distancemat);
+    for (var i = 0;i < nlocations;i += 1) {
+        var location = JSON.parse(v['location' + i]);
+        locations.push(location);
+    }
+    var campaignID = parseInt(v.campaignID);
+
+    var globals = await dbHelper.getGlobals();
+    var workDayDuration = parseFloat(globals.workDayDuration);
+    var avgSpeed = parseFloat(globals.avgTravelTime);
+
+    var campaign = await dbHelper.getCampaign(campaignID);
+    var campaignLocations = campaign.locations;
+    var dates = (Date.parse(campaign.endDate) - Date.parse(campaign.startDate)) / (24 * 60 * 60 * 1000) + 1;
+    var canvassers = campaign.canvassers;
+    var duration = parseFloat(campaign.duration);
+
+    if (campaign.flag == 0) {
+        res.redirect('/campaign/' + campaignID);
+        return;
+    }
+
+    db.collection('campaigns').updateOne({'id': campaignID}, { // Update the campaign in the database
+        $set: {
+            flag: 0
+        }
+    });
+
+    var avgDist = 0;
+    var distancesAdded = 0;
+    for (var i = 0;i < distanceMat.length;i += 1) {
+        for (var j = 0;j < distanceMat[i].length;j += 1) {
+            if (distanceMat[i][j] != 0) {
+                avgDist += distanceMat[i][j];
+                distancesAdded += 1;
+            }
+        }
+    }
+    avgDist = avgDist / distancesAdded;
+    var avgTime = avgDist / avgSpeed * 60; // time in minutes
+    
+    var nassignments = parseInt(Math.ceil(nlocations * (avgTime + duration) / (workDayDuration * 60 * 0.9)));
+
+    console.log(locations);
+
+    var spawn = require("child_process").spawn;
+    var VRP = spawn('python', ['algorithm.py', nassignments, JSON.stringify(locations), avgSpeed, duration, workDayDuration]);
+    VRP.stderr.on('data', (data) => {
+        console.log(data.toString());
+    })
+    VRP.stdout.on('data', async (data) => {
+        console.log(data.toString());
+
+        var VRPlocations = JSON.parse(data.toString());
+        for (var i = 0;i < VRPlocations.length;i++) {
+            for (var j = 0;j < VRPlocations[i].length;j++) {
+                VRPlocations[i][j] = parseInt(VRPlocations[i][j]) - 1;
+            }
+        }
+        console.log(VRPlocations);
+    
+        var assignmentMap = {};
+        var availabilityMap = {};
+        for (var i = 0;i < canvassers.length;i += 1) {
+            assignmentMap[canvassers[i]] = [];
+            availabilityMap[canvassers[i]] = [];
+            var user = await dbHelper.getUser(canvassers[i]);
+            if (user.availability) {
+                user.availability.forEach((availability) => {
+                    var d = new Date();
+                    d.setTime(Date.parse(availability));
+                    availabilityMap[canvassers[i]].push(d.toLocaleString('en-US').split(',')[0]);
+                });
+            }
+        }
+    
+        var campaignDates = [];
+        for (var i = 1;i < dates + 1;i += 1) {
+            var d = new Date();
+            d.setTime(Date.parse(campaign.startDate) + i * 24 * 60 * 60 * 1000);
+            campaignDates.push(d.toLocaleString('en-US').split(',')[0]);
+        }
+    
+        var failed = false;
+        for (var i = 0;i < nassignments;i += 1) {
+            console.log(availabilityMap);
+            var done = false;
+            while (!done && !failed) {
+                var minCanvasser = findMinAssignmentCanvasser(assignmentMap, canvassers);
+                console.log(minCanvasser);
+                var done2 = false;
+                var j = 0;
+                while (!done2) {
+                    var date = campaignDates[j];
+                    var ind = availabilityMap[minCanvasser].indexOf(date);
+                    if (ind != -1) {
+                        var assignment = {
+                            date: date,
+                            n: i
+                        }
+                        assignmentMap[minCanvasser].push(assignment);
+                        availabilityMap[minCanvasser].splice(ind, 1);
+                        done = true;
+                        done2 = true;
+                    }
+                    j++;
+                    if (j >= campaignDates.length) {
+                        done2 = true;
+                        canvassers.splice(canvassers.indexOf(minCanvasser), 1);
+                    }
+                }
+                if (canvassers.length == 0) {
+                    done = true;
+                    failed = true;
+                }
+            }
+        }
+        console.log(assignmentMap);
+        console.log(failed);
+    
+        if (failed) {
+            db.collection('campaigns').updateOne({'id': campaignID}, { // Update the campaign in the database
+                $set: {
+                    flag: 1
+                }
+            });
+        } else {
+            var taskID = 0;
+            for (var i = 0;i < canvassers.length;i += 1) {
+                var canvasser = canvassers[i];
+                for (var j = 0;j < assignmentMap[canvasser].length;j += 1) {
+                    var assignment = assignmentMap[canvasser][j];
+                    var locations = [];
+                    for (var k = 0;k < VRPlocations[assignment.n].length;k += 1) {
+                        locations.push(campaignLocations[locmap[VRPlocations[assignment.n][k]]]);
+                    }
+                    var task = {
+                        username: canvasser,
+                        date: assignment.date,
+                        campaignID: campaignID,
+                        locations: locations,
+                        completedLocations: [],
+                        taskID: taskID
+                    }
+                    db.collection('tasks').insertOne(task);
+                    taskID += 1;
+                }
+            }
+        }
+    
+        res.redirect('/campaign/' + campaignID);
+    });
 });
 
 module.exports = router;
