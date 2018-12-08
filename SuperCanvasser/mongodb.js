@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 // mongodb://username:password@serverip:27017/dbname
-var mongoDB = 'mongodb://user308:cse308@35.237.133.218:27017/superCanvasser';
+var mongoDB = 'mongodb://user308:cse308@35.229.71.230:27017/superCanvasser';
 var options = {
     useNewUrlParser: true 
   }

@@ -596,13 +596,6 @@ router.post('/generateAssignments', async function (req, res, next) {
             }
         }
         console.log(availabilityMap);
-        for (var canv in availabilityMap) {
-            db.collection('users').updateOne({ 'username': canv }, { // Push updated availabilities
-                $set: {
-                    availability: availabilityMap[canv]
-                }
-            });
-        }
         console.log(assignmentMap);
         console.log(failed);
     
@@ -613,9 +606,18 @@ router.post('/generateAssignments', async function (req, res, next) {
                 }
             });
         } else {
+            for (var canv in availabilityMap) {
+                db.collection('users').updateOne({ 'username': canv }, { // Push updated availabilities
+                    $set: {
+                        availability: availabilityMap[canv]
+                    }
+                });
+            }
+
             var taskID = 0;
-            for (var i = 0;i < canvassers.length;i += 1) {
-                var canvasser = canvassers[i];
+            var allCanvassers = Object.keys(assignmentMap);
+            for (var i = 0;i < allCanvassers.length;i += 1) {
+                var canvasser = allCanvassers[i];
                 for (var j = 0;j < assignmentMap[canvasser].length;j += 1) {
                     var assignment = assignmentMap[canvasser][j];
                     var locations = [];

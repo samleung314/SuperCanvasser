@@ -402,7 +402,7 @@ router.get('/viewTasks/:id', async function(req, res, next) {
     winston.info('Viewing Tasks for Canvassing Assignment: ' + id)
     if (manager) {
         winston.info('View Tasks: Manager level access')
-        res.render('viewTasks', { title: "SuperCanvasser", subtitle: "View Tasks", tasks, logged: logValue, admin: admin, manager: manager, canvasser}); 
+        res.render('viewTasks', { title: "SuperCanvasser", subtitle: "View Tasks", tasks, id, logged: logValue, admin: admin, manager: manager, canvasser}); 
     } else {
         winston.info('View Tasks: Non-manager level access')
         res.render('index', {title: "SuperCanvasser", logged: logValue});
@@ -470,7 +470,8 @@ router.get('/upcoming', async function(req, res, next) {
 router.get('/viewTask/:id', async function(req, res, next) {
     var id = parseInt(req.params.id); // Get the ID
     await setLogged(req, res);
-    var task = await dbHelper.getTask(id); // Load the task based on the ID
+    var campaignId = req.query.id;
+    var task = await dbHelper.getTask(campaignId, id); // Load the task based on the ID
     winston.info('Access Task: ' + id)
 
     var completedLocations = [];

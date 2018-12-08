@@ -142,10 +142,11 @@ module.exports = {
         })
     },
 
-    getTask: async function(campaignId) { // Get task for specific canvassing assignment
+    getTask: async function(campaignId, taskId) { // Get task for specific canvassing assignment
         return new Promise(function(resolve, reject) {
-            intId = parseInt(campaignId)
-            db.collection('tasks').findOne({'taskID': intId}, function(err, ret) {
+            campaignIntId = parseInt(campaignId);
+            taskIntId = parseInt(taskId);
+            db.collection('tasks').findOne({'taskID': taskIntId, "campaignID": campaignIntId}, function(err, ret) {
                 if (ret) {
                     resolve(ret); // Resolve, return found task
                 }
